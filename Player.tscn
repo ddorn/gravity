@@ -61,7 +61,7 @@ position = Vector2( 1, -4 )
 texture = ExtResource( 1 )
 vframes = 11
 hframes = 13
-frame = 41
+frame = 26
 __meta__ = {
 "_edit_lock_": true
 }
