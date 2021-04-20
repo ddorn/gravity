@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const ACCELERATION = 512
+const ACCELERATION = 513
 const JUMP_IMPULSE = 100
 const GRAVITY = 200
 const AIR_FRICTION = 0.03
