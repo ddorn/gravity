@@ -36,7 +36,7 @@ func _physics_process(delta):
 	var friction
 	if is_on_floor():
 		if Input.is_action_just_pressed("ui_up"):
-			velocity.y = -JUMP_IMPULSE			
+			velocity.y = -JUMP_IMPULSE
 		friction = GROUND_FRICTION
 
 		if abs(velocity.x) > 1:

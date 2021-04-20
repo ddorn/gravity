@@ -11,7 +11,7 @@ var velocity = Vector2.ZERO
 var circle_shape
 
 onready var sprite = $Sprite
-onready var animationplayer = $AnimationPlayer
+# onready var animationplayer = $AnimationPlayer
 
 
 # Called when the node enters the scene tree for the first time.
