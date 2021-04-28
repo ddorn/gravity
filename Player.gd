@@ -49,7 +49,7 @@ func _physics_process(delta):
 		friction = AIR_FRICTION
 		
 		if Input.is_action_just_released("ui_up") and velocity.y < 0:
-			velocity.y = min(0, velocity.y + JUMP_IMPULSE / 2.0)
+			velocity.y /= 2.0
 	
 	if x_input == 0:
 		velocity.x = lerp(velocity.x, 0, friction)
