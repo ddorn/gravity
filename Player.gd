@@ -1,13 +1,18 @@
 extends KinematicBody2D
 
+const Utils = preload("utils.gd")
+
+const TYPE = "player"
 
 const ACCELERATION = 512
 const JUMP_IMPULSE = 100
+const GRAVITY_CHANGE = 200  # units per seconds
 
 const AIR_FRICTION = 0.03
 const GROUND_FRICTION = 0.4
 const MAX_SPEED = 64
 
+var last_velocity = Vector2.ZERO
 var velocity = Vector2.ZERO
 var circle_shape
 
@@ -19,10 +24,12 @@ onready var animationplayer = $AnimationPlayer
 func _ready():
 	Physics2DServer.area_set_param(get_world_2d().get_space(), Physics2DServer.AREA_PARAM_GRAVITY_VECTOR, Vector2(200,0))
 	Physics2DServer.area_set_param(get_world_2d().get_space(), Physics2DServer.AREA_PARAM_GRAVITY, 200)
-	pass # Replace with function body.
+
 
 func _physics_process(delta):
+	gravity_control(delta)
 	# Player inputs
+	last_velocity = Vector2(velocity)
 	
 	var GRAVITY = 200;
 	var x_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -54,21 +61,15 @@ func _physics_process(delta):
 	if x_input == 0:
 		velocity.x = lerp(velocity.x, 0, friction)
 	
-	GRAVITY = Physics2DServer.area_get_param(get_world_2d().get_space(), Physics2DServer.AREA_PARAM_GRAVITY)
+	GRAVITY = Utils.get_gravity(self)
 	velocity.y += GRAVITY * delta
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
-	_grav_con()
 
-func _grav_con():
-	if Input.is_action_just_pressed("ui_q"):
-		Physics2DServer.area_set_param(get_world_2d().get_space(), Physics2DServer.AREA_PARAM_GRAVITY, 400)
-	if Input.is_action_just_pressed("ui_w"):
-		Physics2DServer.area_set_param(get_world_2d().get_space(), Physics2DServer.AREA_PARAM_GRAVITY, 200)
-	if Input.is_action_just_pressed("ui_e"):
-		Physics2DServer.area_set_param(get_world_2d().get_space(), Physics2DServer.AREA_PARAM_GRAVITY, 100)
-	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+# This would have to be put in the gravitometre node/script
+func gravity_control(delta):
+	var gravity = Utils.get_gravity(self)
+	gravity += GRAVITY_CHANGE * (Input.get_action_strength("ui_q") - Input.get_action_strength("ui_e")) * delta
+	gravity = clamp(gravity, 50, 400)
+	Utils.set_gravity(self, gravity)
