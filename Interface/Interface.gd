@@ -17,12 +17,16 @@ func _ready():
 	_gravity_con_change(B_MID_GRAV)
 
 func _gravity_con_change(new_gravity):
+	animTreeGrav['parameters/playback'].start("Mid_grav")
 	if new_gravity <= B_LOW_GRAV :
 		animTreeGrav['parameters/playback'].travel("Low_grav")
-	if new_gravity <= B_MID_GRAV :
+	elif new_gravity <= B_MID_GRAV :
 		animTreeGrav['parameters/playback'].travel("Mid_grav")
-	if new_gravity <= B_HIGH_GRAV :
+	elif new_gravity <= B_HIGH_GRAV :
 		animTreeGrav['parameters/playback'].travel("High_grav")
+
+
 
 func _on_Player_new_grav(gravityMode):
 	_gravity_con_change(gravityMode)
+
