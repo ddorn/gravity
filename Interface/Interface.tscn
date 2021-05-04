@@ -1,0 +1,163 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Interface/Interface.gd" type="Script" id=1]
+[ext_resource path="res://Interface/Tween.gd" type="Script" id=2]
+[ext_resource path="res://images/Gravitotron2.png" type="Texture" id=3]
+[ext_resource path="res://Interface/AnimationTree.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "High_grav"
+tracks/0/type = "value"
+tracks/0/path = NodePath("NinePatchRect/SpriteGrav:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NinePatchRect:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+tracks/0/type = "value"
+tracks/0/path = NodePath("NinePatchRect/SpriteGrav:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NinePatchRect:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Mid_grav"
+tracks/0/type = "value"
+tracks/0/path = NodePath("NinePatchRect/SpriteGrav:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NinePatchRect:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "High_grav"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "Low_grav"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "Mid_grav"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachine" id=13]
+states/High_grav/node = SubResource( 4 )
+states/High_grav/position = Vector2( 349, 151.5 )
+states/Low_grav/node = SubResource( 5 )
+states/Low_grav/position = Vector2( 209, 65.5 )
+states/Mid_grav/node = SubResource( 6 )
+states/Mid_grav/position = Vector2( 489.5, 65.375 )
+transitions = [ "Low_grav", "Mid_grav", SubResource( 7 ), "Mid_grav", "Low_grav", SubResource( 8 ), "Mid_grav", "High_grav", SubResource( 9 ), "High_grav", "Mid_grav", SubResource( 10 ), "High_grav", "Low_grav", SubResource( 11 ), "Low_grav", "High_grav", SubResource( 12 ) ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=14]
+
+[node name="Interface" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer"]
+margin_bottom = 40.0
+
+[node name="SpriteGrav" type="Sprite" parent="HBoxContainer/NinePatchRect"]
+position = Vector2( 22.2724, 31.0736 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 3 )
+hframes = 3
+frame = 1
+
+[node name="AnimGrav" type="AnimationPlayer" parent="HBoxContainer"]
+anims/High_grav = SubResource( 1 )
+anims/Low_grav = SubResource( 2 )
+anims/Mid_grav = SubResource( 3 )
+
+[node name="AnimTreeGrav" type="AnimationTree" parent="HBoxContainer"]
+tree_root = SubResource( 13 )
+anim_player = NodePath("../AnimGrav")
+parameters/playback = SubResource( 14 )
+script = ExtResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]
+script = ExtResource( 2 )

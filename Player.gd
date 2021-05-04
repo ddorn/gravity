@@ -4,6 +4,8 @@ const Utils = preload("utils.gd")
 
 const TYPE = "player"
 
+signal new_grav(gravityMode)
+
 const ACCELERATION = 512
 const JUMP_IMPULSE = 100
 const GRAVITY_CHANGE = 200  # units per seconds
@@ -73,3 +75,4 @@ func gravity_control(delta):
 	gravity += GRAVITY_CHANGE * (Input.get_action_strength("ui_q") - Input.get_action_strength("ui_e")) * delta
 	gravity = clamp(gravity, 50, 400)
 	Utils.set_gravity(self, gravity)
+	emit_signal("new_grav", gravity)
