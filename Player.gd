@@ -16,7 +16,7 @@ const MAX_SPEED = 64
 
 var last_velocity = Vector2.ZERO
 var velocity = Vector2.ZERO
-var circle_shape
+var is_jumping = false
 
 onready var sprite = $Sprite
 onready var animationplayer = $AnimationPlayer
@@ -31,7 +31,6 @@ func _ready():
 func _physics_process(delta):
 	gravity_control(delta)
 	# Player inputs
-	last_velocity = Vector2(velocity)
 	
 	var GRAVITY = 200;
 	var x_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -46,6 +45,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		if Input.is_action_just_pressed("ui_up"):
 			velocity.y = -JUMP_IMPULSE
+			is_jumping = true
 		friction = GROUND_FRICTION
 
 		if abs(velocity.x) > 1:
@@ -59,6 +59,9 @@ func _physics_process(delta):
 		
 		if Input.is_action_just_released("ui_up") and velocity.y < 0:
 			velocity.y /= 2.0
+			
+	if velocity.y > 0:
+		is_jumping = false
 	
 	if x_input == 0:
 		velocity.x = lerp(velocity.x, 0, friction)
@@ -66,7 +69,17 @@ func _physics_process(delta):
 	GRAVITY = Utils.get_gravity(self)
 	velocity.y += GRAVITY * delta
 	
-	velocity = move_and_slide(velocity, Vector2.UP)
+	# To avoid sliding on the moving platforms
+	var snap = Vector2.DOWN * 1 if !is_jumping else Vector2.ZERO
+	
+	last_velocity = Vector2(velocity)
+	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP)
+	
+	# Handle the collisions with other objects
+	for i in range(get_slide_count()):
+		var collision = get_slide_collision(i)
+		if collision.collider.has_method("collide_with"):
+			collision.collider.collide_with(collision, self)
 
 
 # This would have to be put in the gravitometre node/script
