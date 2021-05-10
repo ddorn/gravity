@@ -2,10 +2,10 @@
 
 [ext_resource path="res://Interface/Interface.gd" type="Script" id=1]
 [ext_resource path="res://Interface/Tween.gd" type="Script" id=2]
-[ext_resource path="res://images/Gravitotron2.png" type="Texture" id=3]
+[ext_resource path="res://images/Gravitotron3.png" type="Texture" id=3]
 [ext_resource path="res://Interface/AnimationTree.gd" type="Script" id=4]
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=1]
 resource_name = "High_grav"
 tracks/0/type = "value"
 tracks/0/path = NodePath("NinePatchRect/SpriteGrav:frame")
@@ -32,7 +32,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=2]
 resource_name = "Low_grav"
 tracks/0/type = "value"
 tracks/0/path = NodePath("NinePatchRect/SpriteGrav:frame")
@@ -59,7 +59,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=3]
 resource_name = "Mid_grav"
 tracks/0/type = "value"
 tracks/0/path = NodePath("NinePatchRect/SpriteGrav:frame")
@@ -151,9 +151,9 @@ hframes = 3
 frame = 1
 
 [node name="AnimGrav" type="AnimationPlayer" parent="HBoxContainer"]
-anims/High_grav = SubResource( 15 )
-anims/Low_grav = SubResource( 16 )
-anims/Mid_grav = SubResource( 17 )
+anims/High_grav = SubResource( 1 )
+anims/Low_grav = SubResource( 2 )
+anims/Mid_grav = SubResource( 3 )
 
 [node name="AnimTreeGrav" type="AnimationTree" parent="HBoxContainer"]
 tree_root = SubResource( 13 )
