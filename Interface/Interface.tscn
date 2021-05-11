@@ -1,39 +1,12 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Interface/Interface.gd" type="Script" id=1]
 [ext_resource path="res://Interface/Tween.gd" type="Script" id=2]
-[ext_resource path="res://images/Gravitotron3.png" type="Texture" id=3]
+[ext_resource path="res://images/Gravity5.png" type="Texture" id=3]
 [ext_resource path="res://Interface/AnimationTree.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
-resource_name = "High_grav"
-tracks/0/type = "value"
-tracks/0/path = NodePath("NinePatchRect/SpriteGrav:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 2 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("NinePatchRect:rect_position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "Low_grav"
+resource_name = "LVL1_grav"
 tracks/0/type = "value"
 tracks/0/path = NodePath("NinePatchRect/SpriteGrav:frame")
 tracks/0/interp = 1
@@ -59,8 +32,8 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Mid_grav"
+[sub_resource type="Animation" id=2]
+resource_name = "LVL2_grav"
 tracks/0/type = "value"
 tracks/0/path = NodePath("NinePatchRect/SpriteGrav:frame")
 tracks/0/interp = 1
@@ -86,44 +59,132 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=4]
-animation = "High_grav"
+[sub_resource type="Animation" id=3]
+tracks/0/type = "value"
+tracks/0/path = NodePath("NinePatchRect/SpriteGrav:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NinePatchRect:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
-[sub_resource type="AnimationNodeAnimation" id=5]
-animation = "Low_grav"
+[sub_resource type="Animation" id=4]
+resource_name = "LVL4_grav"
+tracks/0/type = "value"
+tracks/0/path = NodePath("NinePatchRect/SpriteGrav:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NinePatchRect:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
-[sub_resource type="AnimationNodeAnimation" id=6]
-animation = "Mid_grav"
+[sub_resource type="Animation" id=5]
+resource_name = "LVL5_grav"
+tracks/0/type = "value"
+tracks/0/path = NodePath("NinePatchRect/SpriteGrav:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NinePatchRect:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
-xfade_time = 0.1
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "LVL1_grav"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
-xfade_time = 0.1
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "LVL2_grav"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
-xfade_time = 0.1
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "LVL3_grav"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
-xfade_time = 0.1
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "LVL4_grav"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
-xfade_time = 0.1
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "LVL5_grav"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
-xfade_time = 0.1
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
 
-[sub_resource type="AnimationNodeStateMachine" id=13]
-states/High_grav/node = SubResource( 4 )
-states/High_grav/position = Vector2( 349, 151.5 )
-states/Low_grav/node = SubResource( 5 )
-states/Low_grav/position = Vector2( 209, 65.4375 )
-states/Mid_grav/node = SubResource( 6 )
-states/Mid_grav/position = Vector2( 489.5, 65.375 )
-transitions = [ "Low_grav", "Mid_grav", SubResource( 7 ), "Mid_grav", "Low_grav", SubResource( 8 ), "Mid_grav", "High_grav", SubResource( 9 ), "High_grav", "Mid_grav", SubResource( 10 ), "High_grav", "Low_grav", SubResource( 11 ), "Low_grav", "High_grav", SubResource( 12 ) ]
-start_node = "Mid_grav"
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=14]
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+
+[sub_resource type="AnimationNodeStateMachine" id=19]
+states/LVL1_grav/node = SubResource( 26 )
+states/LVL1_grav/position = Vector2( 206, 65.8359 )
+states/LVL2_grav/node = SubResource( 21 )
+states/LVL2_grav/position = Vector2( 423, 65.7031 )
+states/LVL3_grav/node = SubResource( 8 )
+states/LVL3_grav/position = Vector2( 638, 65.2881 )
+states/LVL4_grav/node = SubResource( 9 )
+states/LVL4_grav/position = Vector2( 845, 65.2881 )
+states/LVL5_grav/node = SubResource( 10 )
+states/LVL5_grav/position = Vector2( 1046, 65.9688 )
+transitions = [ "LVL3_grav", "LVL4_grav", SubResource( 15 ), "LVL4_grav", "LVL3_grav", SubResource( 16 ), "LVL4_grav", "LVL5_grav", SubResource( 17 ), "LVL5_grav", "LVL4_grav", SubResource( 18 ), "LVL2_grav", "LVL3_grav", SubResource( 24 ), "LVL3_grav", "LVL2_grav", SubResource( 25 ), "LVL1_grav", "LVL2_grav", SubResource( 27 ), "LVL2_grav", "LVL1_grav", SubResource( 28 ) ]
+start_node = "LVL3_grav"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
 
 [node name="Interface" type="Control"]
 margin_right = 40.0
@@ -147,18 +208,21 @@ margin_bottom = 40.0
 position = Vector2( 22.2724, 31.0736 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 3 )
-hframes = 3
+hframes = 5
+frame = 2
 
 [node name="AnimGrav" type="AnimationPlayer" parent="HBoxContainer"]
-anims/High_grav = SubResource( 1 )
-anims/Low_grav = SubResource( 2 )
-anims/Mid_grav = SubResource( 3 )
+anims/LVL1_grav = SubResource( 1 )
+anims/LVL2_grav = SubResource( 2 )
+anims/LVL3_grav = SubResource( 3 )
+anims/LVL4_grav = SubResource( 4 )
+anims/LVL5_grav = SubResource( 5 )
 
 [node name="AnimTreeGrav" type="AnimationTree" parent="HBoxContainer"]
-tree_root = SubResource( 13 )
+tree_root = SubResource( 19 )
 anim_player = NodePath("../AnimGrav")
 active = true
-parameters/playback = SubResource( 14 )
+parameters/playback = SubResource( 20 )
 script = ExtResource( 4 )
 
 [node name="Tween" type="Tween" parent="."]

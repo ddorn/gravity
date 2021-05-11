@@ -666,5 +666,5 @@ curve = SubResource( 39 )
 curve = SubResource( 40 )
 
 [node name="Box" parent="." instance=ExtResource( 9 )]
-position = Vector2( 126.218, 134.367 )
+position = Vector2( 185.698, 101.923 )
 [connection signal="new_grav" from="Player" to="Interface" method="_on_Player_new_grav"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Wood_board_breaking.wav-ffa36c20f469db0a3371b4e3a74fd4d8.sample"
+
+[deps]
+
+source_file="res://Sounds/Wood_board_breaking.wav"
+dest_files=[ "res://.import/Wood_board_breaking.wav-ffa36c20f469db0a3371b4e3a74fd4d8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
