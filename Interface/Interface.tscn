@@ -148,7 +148,6 @@ position = Vector2( 22.2724, 31.0736 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 3 )
 hframes = 3
-frame = 1
 
 [node name="AnimGrav" type="AnimationPlayer" parent="HBoxContainer"]
 anims/High_grav = SubResource( 1 )
