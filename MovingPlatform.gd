@@ -14,6 +14,7 @@ var paused = true
 var path_index = 0
 var point_index = 0
 var patrol_points = []
+var offsets = []
 
 var velocity = Vector2.ZERO
 
@@ -22,6 +23,7 @@ func _ready():
 		patrol_points.append(
 			get_node(path).curve.get_baked_points()
 		)
+		offsets.append(get_node(path).global_position)
 
 func _physics_process(delta):
 	if !patrol_path:
@@ -44,12 +46,11 @@ func _physics_process(delta):
 		else:
 			paused = false
 	
-	# Still paused ? Don't do anything.	
+	# Still paused ? Don't do anything.
 	if paused:
 		return
 	
-	
-	var target = patrol_points[path_index][point_index]
+	var target = patrol_points[path_index][point_index] + offsets[path_index]
 	
 	if position.distance_to(target) < 1:
 		point_index += 1
@@ -58,7 +59,7 @@ func _physics_process(delta):
 			path_index += 1  
 			paused = !!avoid_body
 			return  
-		target = patrol_points[path_index][point_index]
+		target = patrol_points[path_index][point_index] + offsets[path_index]
 
 	velocity = (target - position).normalized() * move_speed * delta
 	self.position += velocity
