@@ -3,8 +3,6 @@ extends Control
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-onready var BoiteDialogue = $Dialogue/Inner
-onready var TexteBoiteDialogue = $Dialogue/Inner/Outer/RichTextLabel
 
 
 # Called when the node enters the scene tree for the first time.

@@ -2,8 +2,6 @@ extends KinematicBody2D
 
 const Utils = preload("res://utils.gd")
 
-signal mort()
-
 func collide_with(collision: KinematicCollision2D, body):
 	if body.get("TYPE") == "player":
 		

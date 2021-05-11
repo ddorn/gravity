@@ -20,7 +20,6 @@ __meta__ = {
 
 [node name="Inner" type="Polygon2D" parent="."]
 position = Vector2( 96.0564, 0.113054 )
-scale = Vector2( 1, 1 )
 color = Color( 0.341176, 0.592157, 0.815686, 1 )
 polygon = PoolVector2Array( 0.0673904, 0.189974, 0.172218, 40.2349, 127.96, 40.0253, 128.169, 0.294804 )
 

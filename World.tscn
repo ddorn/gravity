@@ -673,4 +673,3 @@ position = Vector2( 185.698, 101.923 )
 
 [node name="Dialogue" parent="." instance=ExtResource( 10 )]
 [connection signal="new_grav" from="Player" to="Interface" method="_on_Player_new_grav"]
-[connection signal="mort" from="Spike" to="Dialogue" method="_on_Spike_mort"]
