@@ -33,8 +33,8 @@ func _physics_process(delta):
 	if !is_on_floor():
 		GRAVITY = Utils.get_gravity(self)
 		if not_pushing :
-			velocity.x = (last_velocity.x/2);
-			if velocity.x < 5 :
+			velocity.x = (last_velocity.x/3);
+			if velocity.x < 10 && velocity.x > -10 :
 				velocity.x = 0;
 		velocity.y += GRAVITY * delta
 		friction = AIR_FRICTION
@@ -45,7 +45,8 @@ func _on_LeftSide_body_entered(body):
 	if body.get("TYPE") == "player":
 		GRAVITY = Utils.get_gravity(self)
 		if GRAVITY < 300 :
-			not_pushing = false;
+			if GRAVITY < 200 :
+				not_pushing = false;
 			print("L : velocity on PLAYER:", body.last_velocity.x)
 			if MAX_SPEED > body.last_velocity.x && body.last_velocity.x >= MIN_SPEED :
 				velocity.x = body.last_velocity.x;
@@ -60,7 +61,8 @@ func _on_RightSide_body_entered(body):
 	if body.get("TYPE") == "player":
 		GRAVITY = Utils.get_gravity(self)
 		if GRAVITY < 300 :
-			not_pushing = false;
+			if GRAVITY < 200 :
+				not_pushing = false;
 			print("R : velocity on PLAYER:", body.last_velocity.x)
 			if -MIN_SPEED > body.last_velocity.x && body.last_velocity.x >= -MAX_SPEED:
 				velocity.x = body.last_velocity.x+10;
