@@ -1,13 +1,16 @@
 extends Control
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 const B_LVL1_grav = 100
 const B_LVL2_grav = 150
 const B_LVL3_grav = 200
 const B_LVL4_grav = 300
 const B_LVL5_grav = 400
+
+const Utils = preload("res://utils.gd")
+
+const MIN_GRAVITY = 50
+const MAX_GRAVITY = 300
+const GRAVITY_CHANGE = 50  # units per key press
 
 onready var animGrav = $HBoxContainer/AnimGrav
 onready var animTreeGrav = $HBoxContainer/AnimTreeGrav
@@ -16,7 +19,6 @@ onready var animTreeGrav = $HBoxContainer/AnimTreeGrav
 func _ready():
 	animTreeGrav.active=true
 	animTreeGrav['parameters/playback'].start("LVL3_grav")
-	_gravity_con_change(B_LVL1_grav)
 
 func _gravity_con_change(new_gravity):
 	animTreeGrav['parameters/playback'].start("LVL3_grav")
@@ -32,7 +34,16 @@ func _gravity_con_change(new_gravity):
 		animTreeGrav['parameters/playback'].travel("LVL5_grav")
 
 
+func _input(event):
+	var gravity = Utils.get_gravity(self)
+	
+	if Input.is_action_just_pressed("ui_q"):
+		gravity += GRAVITY_CHANGE
+	
+	if Input.is_action_just_pressed("ui_e"):
+		gravity -= GRAVITY_CHANGE
+	
+	gravity = clamp(gravity, MIN_GRAVITY, MAX_GRAVITY)
+	Utils.set_gravity(self, gravity)
 
-func _on_Player_new_grav(gravityMode):
-	_gravity_con_change(gravityMode)
-
+	_gravity_con_change(gravity)

@@ -4,13 +4,10 @@ const Utils = preload("utils.gd")
 
 const TYPE = "player"
 
-signal new_grav(gravityMode)
-
 const ACCELERATION = 512
 const JUMP_IMPULSE = 100
-const GRAVITY_CHANGE = 200  # units per seconds
-
 const AIR_FRICTION = 0.03
+
 const GROUND_FRICTION = 0.4
 const MAX_SPEED = 64
 
@@ -29,10 +26,9 @@ func _ready():
 
 
 func _physics_process(delta):
-	gravity_control(delta)
 	# Player inputs
 	
-	var GRAVITY = 200;
+	var GRAVITY = Utils.get_gravity(self)
 	var x_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 
 	if x_input != 0:
@@ -65,8 +61,7 @@ func _physics_process(delta):
 	
 	if x_input == 0:
 		velocity.x = lerp(velocity.x, 0, friction)
-	
-	GRAVITY = Utils.get_gravity(self)
+
 	velocity.y += GRAVITY * delta
 	
 	# To avoid sliding on the moving platforms
@@ -82,10 +77,3 @@ func _physics_process(delta):
 			collision.collider.collide_with(collision, self)
 
 
-# This would have to be put in the gravitometre node/script
-func gravity_control(delta):
-	var gravity = Utils.get_gravity(self)
-	gravity += GRAVITY_CHANGE * (Input.get_action_strength("ui_q") - Input.get_action_strength("ui_e")) * delta
-	gravity = clamp(gravity, 50, 400)
-	Utils.set_gravity(self, gravity)
-	emit_signal("new_grav", gravity)

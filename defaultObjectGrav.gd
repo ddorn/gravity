@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+const Utils = preload("res://utils.gd")
+
 const ACCELERATION = 512
 const JUMP_IMPULSE = 200
 
@@ -39,3 +41,4 @@ func _physics_process(delta):
 	velocity.y += GRAVITY * delta
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
+
