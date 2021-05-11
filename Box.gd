@@ -19,6 +19,8 @@ var last_velocity = Vector2.ZERO
 var velocity = Vector2.ZERO
 var circle_shape
 var not_pushing;
+var GRAVITY = 200;
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	last_velocity = Vector2(velocity)
@@ -26,7 +28,6 @@ func _ready():
 	not_pushing = true
 
 func _physics_process(delta):
-	var GRAVITY = 200;
 	var friction;
 	last_velocity = velocity
 	if !is_on_floor():
@@ -42,26 +43,32 @@ func _physics_process(delta):
 
 func _on_LeftSide_body_entered(body):
 	if body.get("TYPE") == "player":
-		not_pushing = false;
-		print("L : velocity on PLAYER:", body.last_velocity.x)
-		if MAX_SPEED > body.last_velocity.x && body.last_velocity.x >= MIN_SPEED :
-			velocity.x = body.last_velocity.x;
-		elif Input.get_action_strength("ui_right") :
-			velocity.x = MAX_SPEED;
-		print("L : velocity on box:", velocity.x)
-		move_and_slide(velocity, Vector2.UP)
+		GRAVITY = Utils.get_gravity(self)
+		if GRAVITY < 300 :
+			not_pushing = false;
+			print("L : velocity on PLAYER:", body.last_velocity.x)
+			if MAX_SPEED > body.last_velocity.x && body.last_velocity.x >= MIN_SPEED :
+				velocity.x = body.last_velocity.x;
+			elif Input.get_action_strength("ui_right") :
+				velocity.x = MAX_SPEED;
+			velocity.x = velocity.x * (1-(GRAVITY/300));
+			print("L : velocity on box:", velocity.x)
+			move_and_slide(velocity, Vector2.UP)
 
 
 func _on_RightSide_body_entered(body):
 	if body.get("TYPE") == "player":
-		not_pushing = false;
-		print("R : velocity on PLAYER:", body.last_velocity.x)
-		if -MIN_SPEED > body.last_velocity.x && body.last_velocity.x >= -MAX_SPEED:
-			velocity.x = body.last_velocity.x+10;
-		elif Input.get_action_strength("ui_left") :
-			velocity.x = -MAX_SPEED;
-		print("R : velocity on box:", velocity.x)
-		move_and_slide(velocity, Vector2.UP)
+		GRAVITY = Utils.get_gravity(self)
+		if GRAVITY < 300 :
+			not_pushing = false;
+			print("R : velocity on PLAYER:", body.last_velocity.x)
+			if -MIN_SPEED > body.last_velocity.x && body.last_velocity.x >= -MAX_SPEED:
+				velocity.x = body.last_velocity.x+10;
+			elif Input.get_action_strength("ui_left") :
+				velocity.x = -MAX_SPEED;
+			velocity.x = velocity.x * (1-(GRAVITY/300));
+			print("R : velocity on box:", velocity.x)
+			move_and_slide(velocity, Vector2.UP)
 
 func _on_IsGoingToPush_body_exited(body):
 	if body.get("TYPE") == "player":
