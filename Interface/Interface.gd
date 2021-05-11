@@ -30,7 +30,6 @@ func _gravity_con_change(new_gravity):
 		animTreeGrav['parameters/playback'].travel("LVL4_grav")
 	elif new_gravity <= B_LVL5_grav :
 		animTreeGrav['parameters/playback'].travel("LVL5_grav")
-	print("new_gravity :", new_gravity);
 
 
 

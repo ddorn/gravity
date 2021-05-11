@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 const Utils = preload("res://utils.gd")
 
+signal mort()
 
 func collide_with(collision: KinematicCollision2D, body):
 	if body.get("TYPE") == "player":
@@ -16,4 +17,5 @@ func collide_with(collision: KinematicCollision2D, body):
 		# print(normalized_velocity, " >? ", normalized_repulsion)
 		# By default, if the player is faster than 20 px/s they die.
 		if normalized_velocity > normalized_repulsion:
+			PlayerVariables.mort += 1;
 			get_tree().reload_current_scene()

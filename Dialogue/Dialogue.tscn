@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Dialogue/RichTextLabel.gd" type="Script" id=1]
+[ext_resource path="res://Dialogue/Dialogue.gd" type="Script" id=2]
+
+[node name="Dialogue" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sign" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Inner" type="Polygon2D" parent="."]
+position = Vector2( 96.0564, 0.113054 )
+scale = Vector2( 1, 1 )
+color = Color( 0.341176, 0.592157, 0.815686, 1 )
+polygon = PoolVector2Array( 0.0673904, 0.189974, 0.172218, 40.2349, 127.96, 40.0253, 128.169, 0.294804 )
+
+[node name="Outer" type="Polygon2D" parent="Inner"]
+position = Vector2( 1.87691, 1.58039 )
+scale = Vector2( 0.970684, 0.916837 )
+color = Color( 0.25098, 0.286275, 0.376471, 1 )
+polygon = PoolVector2Array( 0.0813828, 40.4475, -0.127579, -0.0908184, 128.174, 0.118141, 128.174, 40.2385 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Inner/Outer"]
+margin_left = 3.0
+margin_top = 2.0
+margin_right = 125.0
+margin_bottom = 39.0
+bbcode_enabled = true
+bbcode_text = "Utilisez Q et E pour modifier l'intensité de la gravité."
+text = "Utilisez Q et E pour modifier l'intensité de la gravité."
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="Inner/Outer"]
+wait_time = 0.1
+autostart = true
+[connection signal="timeout" from="Inner/Outer/Timer" to="Inner/Outer/RichTextLabel" method="_on_Timer_timeout"]

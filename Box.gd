@@ -47,13 +47,11 @@ func _on_LeftSide_body_entered(body):
 		if GRAVITY < 300 :
 			if GRAVITY < 200 :
 				not_pushing = false;
-			print("L : velocity on PLAYER:", body.last_velocity.x)
 			if MAX_SPEED > body.last_velocity.x && body.last_velocity.x >= MIN_SPEED :
 				velocity.x = body.last_velocity.x;
 			elif Input.get_action_strength("ui_right") :
 				velocity.x = MAX_SPEED;
 			velocity.x = velocity.x * (1-(GRAVITY/300));
-			print("L : velocity on box:", velocity.x)
 			move_and_slide(velocity, Vector2.UP)
 
 
@@ -63,13 +61,11 @@ func _on_RightSide_body_entered(body):
 		if GRAVITY < 300 :
 			if GRAVITY < 200 :
 				not_pushing = false;
-			print("R : velocity on PLAYER:", body.last_velocity.x)
 			if -MIN_SPEED > body.last_velocity.x && body.last_velocity.x >= -MAX_SPEED:
 				velocity.x = body.last_velocity.x+10;
 			elif Input.get_action_strength("ui_left") :
 				velocity.x = -MAX_SPEED;
 			velocity.x = velocity.x * (1-(GRAVITY/300));
-			print("R : velocity on box:", velocity.x)
 			move_and_slide(velocity, Vector2.UP)
 
 func _on_IsGoingToPush_body_exited(body):
