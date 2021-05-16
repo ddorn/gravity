@@ -7,7 +7,7 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Interface/Interface.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Trophy.tscn" type="PackedScene" id=7]
-[ext_resource path="res://World.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Level2.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
