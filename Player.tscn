@@ -1,9 +1,28 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://images/Player.png" type="Texture" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://Aerologica.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Sounds/death4.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2, 3 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("DeathParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
@@ -54,7 +73,24 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
+[sub_resource type="ParticlesMaterial" id=5]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 102.81
+initial_velocity_random = 0.25
+orbit_velocity = 1.0
+orbit_velocity_random = 0.0
+linear_accel = -48.6
+angle_random = 1.0
+color = Color( 0.756863, 0.129412, 0.564706, 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 32
+font_data = ExtResource( 3 )
+
 [node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 1, -4 )
@@ -73,7 +109,35 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Animation" type="AnimationPlayer" parent="."]
+anims/death = SubResource( 6 )
 anims/idle = SubResource( 2 )
 anims/jump = SubResource( 3 )
 anims/run = SubResource( 4 )
+
+[node name="DeathParticles" type="Particles2D" parent="."]
+position = Vector2( 0, -4 )
+emitting = false
+amount = 200
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource( 5 )
+
+[node name="DeathText" type="Label" parent="."]
+visible = false
+margin_right = 265.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.94902, 0.341176, 0.0941176, 1 )
+text = "MISSSION FAILED"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+[connection signal="animation_finished" from="Animation" to="." method="_on_Animation_finished"]

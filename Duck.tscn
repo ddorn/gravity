@@ -35,3 +35,5 @@ vframes = 2
 
 [node name="Animation" type="AnimationPlayer" parent="Sprite"]
 anims/default = SubResource( 2 )
+
+[node name="Kill" type="AudioStreamPlayer2D" parent="."]

@@ -16,8 +16,9 @@ var velocity = Vector2.ZERO
 var is_jumping = false
 
 onready var sprite = $Sprite
-onready var animationplayer = $AnimationPlayer
+onready var animationplayer = $Animation
 
+var dead = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,6 +28,8 @@ func _ready():
 
 func _physics_process(delta):
 	# Player inputs
+	if dead:
+		return
 	
 	var GRAVITY = Utils.get_gravity(self)
 	var x_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -77,3 +80,16 @@ func _physics_process(delta):
 			collision.collider.collide_with(collision, self)
 
 
+func kill():
+	dead = true
+	animationplayer.play("death")
+	$DeathText.visible = true
+	$DeathText.set_global_position(Vector2(160, 90) - $DeathText.rect_size / 2.0)
+	$DeathSound.play()
+
+func _on_Animation_finished(anim_name):
+	if anim_name == "death":
+		PlayerVariables.mort += 1
+		get_tree().reload_current_scene()
+		
+		
