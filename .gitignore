@@ -1,3 +1,4 @@
 .envrc
 shell.nix
 */.DS_Store
+addons/wakatime/
