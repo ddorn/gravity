@@ -139,10 +139,10 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=26]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "LVL1_grav"
 
-[sub_resource type="AnimationNodeAnimation" id=21]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "LVL2_grav"
 
 [sub_resource type="AnimationNodeAnimation" id=8]
@@ -154,6 +154,14 @@ animation = "LVL4_grav"
 [sub_resource type="AnimationNodeAnimation" id=10]
 animation = "LVL5_grav"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=15]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
@@ -162,18 +170,10 @@ animation = "LVL5_grav"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=18]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
-
 [sub_resource type="AnimationNodeStateMachine" id=19]
-states/LVL1_grav/node = SubResource( 26 )
+states/LVL1_grav/node = SubResource( 6 )
 states/LVL1_grav/position = Vector2( 206, 65.8359 )
-states/LVL2_grav/node = SubResource( 21 )
+states/LVL2_grav/node = SubResource( 7 )
 states/LVL2_grav/position = Vector2( 423, 65.7031 )
 states/LVL3_grav/node = SubResource( 8 )
 states/LVL3_grav/position = Vector2( 637.5, 65.7695 )
@@ -181,7 +181,7 @@ states/LVL4_grav/node = SubResource( 9 )
 states/LVL4_grav/position = Vector2( 845, 65.2881 )
 states/LVL5_grav/node = SubResource( 10 )
 states/LVL5_grav/position = Vector2( 1046, 65.9688 )
-transitions = [ "LVL3_grav", "LVL4_grav", SubResource( 15 ), "LVL4_grav", "LVL3_grav", SubResource( 16 ), "LVL4_grav", "LVL5_grav", SubResource( 17 ), "LVL5_grav", "LVL4_grav", SubResource( 18 ), "LVL2_grav", "LVL3_grav", SubResource( 24 ), "LVL3_grav", "LVL2_grav", SubResource( 25 ), "LVL1_grav", "LVL2_grav", SubResource( 27 ), "LVL2_grav", "LVL1_grav", SubResource( 28 ) ]
+transitions = [ "LVL3_grav", "LVL4_grav", SubResource( 11 ), "LVL4_grav", "LVL3_grav", SubResource( 12 ), "LVL4_grav", "LVL5_grav", SubResource( 13 ), "LVL5_grav", "LVL4_grav", SubResource( 14 ), "LVL2_grav", "LVL3_grav", SubResource( 15 ), "LVL3_grav", "LVL2_grav", SubResource( 16 ), "LVL1_grav", "LVL2_grav", SubResource( 17 ), "LVL2_grav", "LVL1_grav", SubResource( 18 ) ]
 start_node = "LVL3_grav"
 end_node = "LVL3_grav"
 
@@ -210,7 +210,7 @@ position = Vector2( 22.2724, 31.0736 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 3 )
 hframes = 5
-frame = 4
+frame = 2
 
 [node name="AnimGrav" type="AnimationPlayer" parent="HBoxContainer"]
 anims/LVL1_grav = SubResource( 1 )

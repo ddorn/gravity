@@ -1,15 +1,11 @@
 extends Control
 
-const B_LVL1_grav = 100
-const B_LVL2_grav = 150
-const B_LVL3_grav = 200
-const B_LVL4_grav = 300
-const B_LVL5_grav = 400
-
 const Utils = preload("res://utils.gd")
 
 const MIN_GRAVITY = 50
-const MAX_GRAVITY = 300
+const MAX_GRAVITY = 400
+const grav_thresholds = [100, 150, 250, 300]
+
 const GRAVITY_CHANGE = 50  # units per key press
 
 onready var animGrav = $HBoxContainer/AnimGrav
@@ -21,17 +17,8 @@ func _ready():
 	animTreeGrav['parameters/playback'].start("LVL3_grav")
 
 func _gravity_con_change(new_gravity):
-	animTreeGrav['parameters/playback'].start("LVL3_grav")
-	if new_gravity <= B_LVL1_grav :
-		animTreeGrav['parameters/playback'].travel("LVL1_grav")
-	elif new_gravity <= B_LVL2_grav :
-		animTreeGrav['parameters/playback'].travel("LVL2_grav")
-	elif new_gravity <= B_LVL3_grav :
-		animTreeGrav['parameters/playback'].travel("LVL3_grav")
-	elif new_gravity <= B_LVL4_grav :
-		animTreeGrav['parameters/playback'].travel("LVL4_grav")
-	elif new_gravity <= B_LVL5_grav :
-		animTreeGrav['parameters/playback'].travel("LVL5_grav")
+	var index = grav_thresholds.bsearch(new_gravity)
+	animTreeGrav['parameters/playback'].travel("LVL" + str(index + 1) + "_grav")
 
 
 func _input(event):
