@@ -6,7 +6,7 @@ func _ready():
 	$Animation.play("default")
 	$Animation.seek(randf() * $Animation.current_animation_length)
 
-func _process(delta):
+func _process(_delta):
 	var gravity = Utils.get_gravity(self)
 	
 	var prev_state = $Animation.current_animation
