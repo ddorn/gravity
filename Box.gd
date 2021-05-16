@@ -2,9 +2,6 @@ extends KinematicBody2D
 
 const Utils = preload("utils.gd")
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
 const ACCELERATION = 512
 const JUMP_IMPULSE = 100
