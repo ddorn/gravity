@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://images/trophy.png" type="Texture" id=1]
+[ext_resource path="res://Trophy.gd" type="Script" id=2]
+[ext_resource path="res://Sounds/success_music.wav" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 0, 1 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 4 )
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 1.65459, -3.3673, -1.65459, 3.3673, 0, 7, -0.317406, 6.50855, 0.317406, -6.50855, -18, -2, -6.00131, 0.599942, 6.00131, -0.599942, -4, -14, -5.19131, -4.83736, 5.19131, 4.83736, 12, -10, 0.729387, -5.21808, -0.729387, 5.21808, 13, 4, 7.41624, -0.090502, -7.41624, 0.090502, 4, 17, -0.0306666, 7.13313, 0.0306666, -7.13313, 0, -5, -8.37651, -6.9163, 8.37651, 6.9163, -6, -1, -4.02968, 31.4698, 4.02968, -31.4698, 2, -62 )
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "default"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 2, 1 ]
+}
+
+[node name="Trophy" type="StaticBody2D"]
+script = ExtResource( 2 )
+
+[node name="Not a collision" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 3 )
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="SuccessSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource( 4 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = -0.11552
+rotate = false
+loop = false
+
+[node name="trophy" type="Sprite" parent="Path2D/PathFollow2D"]
+rotation = 0.11552
+texture = ExtResource( 1 )
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path2D/PathFollow2D/trophy"]
+autoplay = "default"
+anims/default = SubResource( 2 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="finished" from="SuccessSound" to="." method="_on_SuccessSound_finished"]
