@@ -114,9 +114,9 @@ margin_bottom = 45.0
 position = Vector2( 44, 16 )
 next_level = ExtResource( 8 )
 
-[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+[node name="BgMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-volume_db = -2.0
+volume_db = -15.0
 autoplay = true
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
