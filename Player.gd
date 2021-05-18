@@ -88,15 +88,19 @@ func _physics_process(delta):
 	
 	last_velocity = Vector2(velocity)
 	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP, false, 4, PI/4, false)
+
 	# Handle the collisions with other objects
 	for i in range(get_slide_count()):
 		var collision = get_slide_collision(i)
 		if collision.collider.has_method("collide_with"):
 			collision.collider.collide_with(collision, self)
+
 		if collision.collider.has_method("push"):
 			collision.collider.push(velocity, snap, self)
 
-	
+	if not (0 < position.x and position.x < 360 and 0 < position.y and position.y < 180):
+		kill()
+
 func kill():
 	putting_down_box(0)
 	dead = true
