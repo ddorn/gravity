@@ -11,10 +11,10 @@ func _process(_delta):
 	
 	var prev_state = $Animation.current_animation
 
-	if gravity > 300:
-		$Animation.current_animation = "high_grav"
-	else:
+	if gravity >= 200:
 		$Animation.current_animation = "default"
+	else:
+		$Animation.current_animation = "low_grav"
 
 	if prev_state != $Animation.current_animation:
 		# Randomize start on change

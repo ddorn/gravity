@@ -98,7 +98,7 @@ func _physics_process(delta):
 		if collision.collider.has_method("push"):
 			collision.collider.push(velocity, snap, self)
 
-	if not (0 < position.x and position.x < 360 and 0 < position.y and position.y < 180):
+	if not (-10 < position.x and position.x < 360 + 10 and -10 < position.y and position.y < 180 + 10):
 		kill()
 
 func kill():

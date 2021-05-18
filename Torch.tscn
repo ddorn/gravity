@@ -22,7 +22,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=2]
-resource_name = "high_grav"
+resource_name = "low_grav"
 length = 1.4
 step = 0.2
 tracks/0/type = "value"
@@ -42,10 +42,10 @@ tracks/0/keys = {
 texture = ExtResource( 1 )
 vframes = 2
 hframes = 7
-frame = 13
+frame = 7
 script = ExtResource( 2 )
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 playback_speed = 0.4
 anims/default = SubResource( 1 )
-anims/high_grav = SubResource( 2 )
+anims/low_grav = SubResource( 2 )
