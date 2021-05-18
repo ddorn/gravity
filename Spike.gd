@@ -11,3 +11,7 @@ func collide_with(collision: KinematicCollision2D, body):
 		
 		if normalized_velocity > normalized_repulsion:
 			body.kill()
+			
+			$Sprite.frame = 3
+		else:
+			$Sprite.frame = 1
