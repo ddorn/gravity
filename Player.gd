@@ -7,6 +7,7 @@ const TYPE = "player"
 const ACCELERATION = 512
 const JUMP_IMPULSE = 100
 const AIR_FRICTION = 0.03
+const SNAP = 2
 
 const GROUND_FRICTION = 0.4
 const MAX_SPEED = 64
@@ -84,7 +85,7 @@ func _physics_process(delta):
 	velocity.y += GRAVITY * delta
 	
 	# To avoid sliding on the moving platforms
-	var snap = Vector2.DOWN * 1 if !is_jumping else Vector2.ZERO
+	var snap = Vector2.DOWN * SNAP if !is_jumping else Vector2.ZERO
 	
 	last_velocity = Vector2(velocity)
 	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP, false, 4, PI/4, false)
