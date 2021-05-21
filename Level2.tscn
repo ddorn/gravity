@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://MainTileset.tres" type="TileSet" id=2]
@@ -10,11 +10,13 @@
 [ext_resource path="res://Spike.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Trophy.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Duck.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Cage.tscn" type="PackedScene" id=11]
 
 [node name="Level 2" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 22, 144 )
+collision_mask = 3
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
@@ -85,3 +87,12 @@ horizontal_speed = -60.0
 stream = ExtResource( 4 )
 volume_db = -15.0
 autoplay = true
+
+[node name="Cage" parent="." instance=ExtResource( 11 )]
+position = Vector2( 301, 136 )
+scale = Vector2( 2, 2 )
+collision_layer = 2
+collision_mask = 0
+buttons_needed_to_open = 2
+[connection signal="change_state" from="Button1" to="Cage" method="react_to_button_press"]
+[connection signal="change_state" from="Button2" to="Cage" method="react_to_button_press"]

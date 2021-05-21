@@ -127,3 +127,7 @@ func _on_Animation_finished(anim_name):
 		get_tree().reload_current_scene()
 		
 		
+
+
+func react_to_button_press(pressed):
+	pass # Replace with function body.
