@@ -13,7 +13,10 @@ const MAX_SPEED = 64
 
 var last_velocity = Vector2.ZERO
 var velocity = Vector2.ZERO
+var acceleration = ACCELERATION;
 var is_jumping = false
+var box_on_shoulder = false
+var object_picked = KinematicBody2D
 
 onready var sprite = $Sprite
 onready var animationplayer = $Animation
@@ -33,11 +36,24 @@ func _physics_process(delta):
 	
 	var GRAVITY = Utils.get_gravity(self)
 	var x_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-
-	if x_input != 0:
-		velocity.x += x_input * ACCELERATION * delta
-		velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
 	
+	if box_on_shoulder :
+		acceleration = ACCELERATION - (1+((GRAVITY-50)/250))
+		clamp(acceleration, 32, ACCELERATION)
+		object_picked.box_following_player(velocity)
+		if GRAVITY >= 250 :
+			self.kill()
+		if Input.is_action_just_pressed("ui_w"):
+			var direction = 0
+			if sprite.is_flipped_h() :
+				direction = -1
+			else :
+				direction = 1
+			putting_down_box(direction)
+	if x_input != 0:
+		velocity.x += x_input * acceleration * delta
+		velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
+		
 		sprite.flip_h = (x_input < 0)
 
 	var friction
@@ -71,21 +87,34 @@ func _physics_process(delta):
 	var snap = Vector2.DOWN * 1 if !is_jumping else Vector2.ZERO
 	
 	last_velocity = Vector2(velocity)
-	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP)
-	
+	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP, false, 4, PI/4, false)
 	# Handle the collisions with other objects
 	for i in range(get_slide_count()):
 		var collision = get_slide_collision(i)
 		if collision.collider.has_method("collide_with"):
 			collision.collider.collide_with(collision, self)
+		if collision.collider.has_method("push"):
+			collision.collider.push(velocity, snap, self)
 
-
+	
 func kill():
+	putting_down_box(0)
 	dead = true
 	animationplayer.play("death")
 	$DeathText.visible = true
 	$DeathText.set_global_position(Vector2(160, 90) - $DeathText.rect_size / 2.0)
 	$DeathSound.play()
+
+func picking_up_box(object : KinematicBody2D):
+	box_on_shoulder = true
+	object_picked = object
+
+func putting_down_box(direction):
+	box_on_shoulder = false
+	object_picked.putting_down(direction)
+	acceleration = ACCELERATION;
+
+
 
 func _on_Animation_finished(anim_name):
 	if anim_name == "death":

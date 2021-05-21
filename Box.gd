@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Box
 
 const Utils = preload("utils.gd")
 
@@ -9,16 +10,30 @@ const GRAVITY_CHANGE = 200  # units per seconds
 
 const AIR_FRICTION = 0.03
 const GROUND_FRICTION = 0.4
-const MIN_SPEED = 30
-const MAX_SPEED = 64
+const MIN_SPEED = 16
+const MAX_SPEED = 60
 
 var last_velocity = Vector2.ZERO
 var velocity = Vector2.ZERO
-var circle_shape
+var picked_up = false;
 var not_pushing;
 var GRAVITY = 200;
+var body_interacted = KinematicBody2D
 
 # Called when the node enters the scene tree for the first time.
+func push(movement : Vector2, snap : Vector2, pusher : KinematicBody2D) -> void:
+	GRAVITY = Utils.get_gravity(self)
+	if GRAVITY > 250 :
+		not_pushing = true;
+	if !not_pushing :
+		if Input.get_action_strength("ui_w") && GRAVITY <= 250  :
+			picking_up_box(pusher)
+			body_interacted = pusher
+		movement.y = 0;
+		movement.x = MAX_SPEED*(Input.get_action_strength("ui_right")-Input.get_action_strength("ui_left"))                                
+		velocity.x = movement.x
+		move_and_slide_with_snap(movement, snap, Vector2.UP, false, 4, PI/4, false)
+
 func _ready():
 	last_velocity = Vector2(velocity)
 	velocity.y = 0;
@@ -26,50 +41,51 @@ func _ready():
 
 func _physics_process(delta):
 	var friction;
-	last_velocity = velocity
-	if !is_on_floor():
-		GRAVITY = Utils.get_gravity(self)
-		if not_pushing :
-			velocity.x = (last_velocity.x/3);
-			if velocity.x < 10 && velocity.x > -10 :
-				velocity.x = 0;
-		velocity.y += GRAVITY * delta
-		friction = AIR_FRICTION
-	else : friction = GROUND_FRICTION
-	velocity = move_and_slide(velocity, Vector2.UP)
+	GRAVITY = Utils.get_gravity(self)
+	if !picked_up :
+		var friction_grav_coeff = 1 + GRAVITY/100;
+		if !is_on_floor():
+			velocity.y += GRAVITY * delta
+			friction = AIR_FRICTION
+		else : friction = GROUND_FRICTION
+		friction = friction*friction_grav_coeff
+		if velocity.x > friction*MIN_SPEED :
+			velocity.x = velocity.x - friction*MIN_SPEED;
+		elif velocity.x > 0 :
+			velocity.x = 0; 
+		elif velocity.x < -friction*MIN_SPEED :
+			velocity.x = velocity.x + friction*MIN_SPEED;
+		elif velocity.x < 0 :
+			velocity.x = 0; 
+		velocity = move_and_slide(velocity, Vector2.UP)
+	else : velocity = move_and_slide(velocity, Vector2.UP)
+
+func picking_up_box(pusher : KinematicBody2D):
+	picked_up = true;
+	pusher.picking_up_box(self)
+
+func putting_down(direction):
+	picked_up = false;
+	velocity.x = direction*MAX_SPEED
+	velocity.y = 0
+
+func box_following_player(movement : Vector2):
+	velocity = movement
 
 func _on_LeftSide_body_entered(body):
 	if body.get("TYPE") == "player":
-		GRAVITY = Utils.get_gravity(self)
-		if GRAVITY < 300 :
-			if GRAVITY < 200 :
-				not_pushing = false;
-			if MAX_SPEED > body.last_velocity.x && body.last_velocity.x >= MIN_SPEED :
-				velocity.x = body.last_velocity.x;
-			elif Input.get_action_strength("ui_right") :
-				velocity.x = MAX_SPEED;
-			velocity.x = velocity.x * (1-(GRAVITY/300));
-			move_and_slide(velocity, Vector2.UP)
+		not_pushing = false;
 
 
 func _on_RightSide_body_entered(body):
 	if body.get("TYPE") == "player":
-		GRAVITY = Utils.get_gravity(self)
-		if GRAVITY < 300 :
-			if GRAVITY < 200 :
-				not_pushing = false;
-			if -MIN_SPEED > body.last_velocity.x && body.last_velocity.x >= -MAX_SPEED:
-				velocity.x = body.last_velocity.x+10;
-			elif Input.get_action_strength("ui_left") :
-				velocity.x = -MAX_SPEED;
-			velocity.x = velocity.x * (1-(GRAVITY/300));
-			move_and_slide(velocity, Vector2.UP)
+		not_pushing = false;
 
-func _on_IsGoingToPush_body_exited(body):
+func _on_LeftSide_body_exited(body):
 	if body.get("TYPE") == "player":
 		not_pushing = true;
 
 
-func _on_IsGoingToPush_body_entered(body):
+func _on_RightSide_body_exited(body):
 	if body.get("TYPE") == "player":
-		not_pushing = false;
+		not_pushing = true;
