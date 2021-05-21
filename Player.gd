@@ -103,7 +103,7 @@ func _physics_process(delta):
 		kill()
 
 func kill():
-	putting_down_box(0)
+	# putting_down_box(0)
 	dead = true
 	animationplayer.play("death")
 	$DeathText.visible = true

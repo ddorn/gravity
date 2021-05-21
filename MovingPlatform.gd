@@ -3,8 +3,9 @@ extends KinematicBody2D
 export(float, 0, 100) var move_speed = 50
 export(Array, NodePath) var patrol_path
 export(bool) var loop = true
+export(Array, NodePath) var avoid_areas
+
 export(NodePath) var avoid_body 
-export(float, 10.0, 100.0) var avoid_radius = 15.0
 
 var paused = true
 
@@ -41,7 +42,7 @@ func _physics_process(delta):
 	if paused:
 		if avoid_body:
 			var body_pos = get_node(avoid_body).position
-			if position.distance_to(body_pos) < avoid_radius:
+			if get_node(avoid_areas[path_index]).overlaps_body(get_node(avoid_body)):
 				paused = false
 		else:
 			paused = false
