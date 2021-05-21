@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://images/trophy.png" type="Texture" id=1]
 [ext_resource path="res://Trophy.gd" type="Script" id=2]
 [ext_resource path="res://Sounds/success_music.wav" type="AudioStream" id=3]
-[ext_resource path="res://images/halo.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 0, 1 )
@@ -52,24 +51,6 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 2, 1 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "spin"
-length = 0.9
-loop = true
-step = 0.3
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2 ]
-}
-
 [node name="Trophy" type="StaticBody2D"]
 script = ExtResource( 2 )
 
@@ -111,16 +92,5 @@ hframes = 4
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Path2D/PathFollow2D/trophy"]
 autoplay = "default"
 anims/default = SubResource( 4 )
-
-[node name="Halo" type="Sprite" parent="."]
-visible = false
-position = Vector2( 0, 2 )
-texture = ExtResource( 4 )
-hframes = 3
-frame = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Halo"]
-playback_speed = 3.0
-anims/spin = SubResource( 5 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="finished" from="SuccessSound" to="." method="_on_SuccessSound_finished"]

@@ -7,7 +7,6 @@ var sound_length
 
 func _ready():
 	sound_length = $SuccessSound.stream.get_length()
-	$Halo/AnimationPlayer.play("spin")
 	print(sound_length)
 
 # Time since the player entered the area
