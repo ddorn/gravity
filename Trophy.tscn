@@ -80,7 +80,7 @@ loop = false
 position = Vector2( 0.115263, -0.993335 )
 rotation = 0.11552
 amount = 20
-preprocess = 3.0
+preprocess = 56.1
 speed_scale = 0.05
 process_material = SubResource( 8 )
 
