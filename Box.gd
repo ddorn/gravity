@@ -49,16 +49,23 @@ func _physics_process(delta):
 			friction = AIR_FRICTION
 		else : friction = GROUND_FRICTION
 		friction = friction*friction_grav_coeff
-		if velocity.x > friction*MIN_SPEED :
+		if velocity.x > friction*MIN_SPEED:
 			velocity.x = velocity.x - friction*MIN_SPEED;
-		elif velocity.x > 0 :
-			velocity.x = 0; 
-		elif velocity.x < -friction*MIN_SPEED :
+		elif velocity.x > 0:
+			velocity.x = 0 
+		elif velocity.x < -friction*MIN_SPEED:
 			velocity.x = velocity.x + friction*MIN_SPEED;
-		elif velocity.x < 0 :
-			velocity.x = 0; 
-		velocity = move_and_slide(velocity, Vector2.UP)
-	else : velocity = move_and_slide(velocity, Vector2.UP)
+		elif velocity.x < 0:
+			velocity.x = 0
+			 
+	velocity = move_and_slide(velocity, Vector2.UP)
+	
+	# Handle the collisions with other objects
+	for i in range(get_slide_count()):
+		var collision = get_slide_collision(i)
+		if collision.collider.has_method("collide_with"):
+			collision.collider.collide_with(collision, self)
+
 
 func picking_up_box(pusher : KinematicBody2D):
 	picked_up = true;
