@@ -24,7 +24,6 @@ func react_to_button_press(pressed):
 		frame_goal = int(lerp(0.0, 4.0, buttons_pressed / float(buttons_needed_to_open)))
 		
 	var duration = abs($Sprite.frame - frame_goal) * open_speed
-	print(duration)
 	
 	$Tween.interpolate_property($Sprite, "frame", $Sprite.frame, frame_goal, duration)
 	$Tween.start()
