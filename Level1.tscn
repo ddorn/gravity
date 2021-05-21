@@ -11,27 +11,27 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -0.333374, 0.333313, 0, 0, 0, 0, 61.6666, 0.333313 )
+"points": PoolVector2Array( 0, 0, 0, 0, -0.333374, 0.333313, 0, 0, 0, 0, 61.6666, 0.333313, 0, 0, 0, 0, 114, 0 )
 }
 
 [sub_resource type="Curve2D" id=2]
 _data = {
-"points": PoolVector2Array( -10.3828, -0.280616, 10.3828, 0.280616, 61.6666, 0.333313, 3.27385, 10.7569, -3.27385, -10.7569, 83.6666, -14.3334, -2.24492, 13.2825, 2.24492, -13.2825, 74.9999, -43.6667 )
+"points": PoolVector2Array( -10.3828, -0.280616, 10.3828, 0.280616, 61, 0, 3.94127, 10.7569, -3.94127, -10.7569, 95, -11, -0.280616, 8.27816, 0.280616, -8.27816, 77, -35, -0.140304, 11.4585, 0.140304, -11.4585, 75, -69 )
 }
 
 [sub_resource type="Curve2D" id=3]
 _data = {
-"points": PoolVector2Array( -1.98201, 10.0092, 1.98201, -10.0092, 74.9999, -43.6667, 2.18021, 0.594603, -2.18021, -0.594603, 66.9999, -57.6667, 16.3605, -1.41581, -16.3605, 1.41581, 14.3333, -62.3333 )
+"points": PoolVector2Array( -1.98201, 10.0092, 1.98201, -10.0092, 74.9999, -43.6667, 5.62346, 2.05136, -5.62346, -2.05136, 66.9999, -57.6667, 12.8067, -13.2271, -12.8067, 13.2271, 26, -44, 40.6105, 2.08419, -40.6105, -2.08419, -11, -26 )
 }
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 86, 72 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 55, 104 )
+extents = Vector2( 62, 104 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 182, 40 )
+extents = Vector2( 182, 51 )
 
 [node name="Level1" type="Node2D"]
 
@@ -39,7 +39,7 @@ extents = Vector2( 182, 40 )
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 8, 8 )
 format = 1
-tile_data = PoolIntArray( 65549, 12, 0, 65561, 14, 0, 131078, 15, 196613, 131092, 6, 0, 196611, 0, 262149, 196612, 0, 1048576, 196613, 0, 196613, 196614, 0, 1048581, 196615, 0, 393219, 917516, 2, 0, 917527, 9, 0, 983040, 15, 65538, 983041, 15, 131072, 983043, 15, 131074, 983044, 15, 65541, 983045, 15, 131076, 983061, 15, 65536, 983062, 15, 196613, 983063, 15, 65538, 983064, 15, 65540, 983065, 15, 196608, 983067, 15, 3, 983068, 15, 5, 983069, 15, 2, 1114110, 0, 262149, 1114111, 0, 1048581, 1048576, 0, 1048578, 1048577, 0, 1048584, 1048578, 0, 1048576, 1048579, 0, 196612, 1048580, 0, 1048585, 1048581, 0, 262151, 1048596, 0, 262146, 1048597, 0, 1048576, 1048598, 0, 1048583, 1048599, 0, 196613, 1048600, 0, 1048578, 1048601, 0, 1048584, 1048602, 0, 1048579, 1048603, 0, 196613, 1048604, 0, 1048581, 1048605, 0, 393224, 1114117, 0, 524296, 1114132, 0, 524289, 1114140, 0, 786441, 1114141, 0, 458760, 1179652, 0, 393222, 1179653, 0, 262147, 1179654, 0, 1048578, 1179655, 0, 1048577, 1179656, 0, 1048579, 1179657, 0, 1048580, 1179658, 0, 1048578, 1179659, 0, 1048577, 1179660, 0, 1048585, 1179661, 0, 1048580, 1179662, 0, 1048583, 1179663, 0, 196612, 1179664, 0, 1048578, 1179665, 0, 1048579, 1179666, 0, 1048583, 1179667, 0, 196612, 1179668, 0, 262147, 1179669, 0, 393219, 1179672, 9, 0, 1179677, 0, 524296, 1245207, 15, 131077, 1245213, 0, 589833, 1310742, 0, 262149, 1310743, 0, 1048583, 1310744, 0, 1048579, 1310745, 0, 1048582, 1310746, 0, 262148, 1310749, 0, 589833, 1376285, 0, 589833, 1441821, 0, 589833, 1507357, 0, 589833, 1572893, 0, 851968 )
+tile_data = PoolIntArray( 65549, 12, 0, 65561, 14, 0, 131078, 15, 196613, 131092, 6, 0, 196611, 0, 262149, 196612, 0, 1048576, 196613, 0, 196613, 196614, 0, 1048581, 196615, 0, 393219, 852001, 4, 0, 917516, 2, 0, 983040, 15, 65538, 983041, 15, 131072, 983043, 15, 131074, 983044, 15, 65541, 983045, 15, 131076, 983068, 15, 4, 983069, 15, 65538, 983070, 15, 65541, 983071, 15, 131077, 983072, 15, 2, 983073, 15, 196613, 1114110, 0, 262149, 1114111, 0, 1048581, 1048576, 0, 1048578, 1048577, 0, 1048584, 1048578, 0, 1048576, 1048579, 0, 196612, 1048580, 0, 1048585, 1048581, 0, 262151, 1048604, 0, 262146, 1048605, 0, 1048585, 1048606, 0, 1048578, 1048607, 0, 1048584, 1048608, 0, 1048577, 1048609, 0, 1048584, 1048610, 0, 1048576, 1048611, 0, 393224, 1114117, 0, 524296, 1114140, 0, 524289, 1114146, 0, 786441, 1114147, 0, 458760, 1179652, 0, 393222, 1179653, 0, 262147, 1179654, 0, 1048578, 1179655, 0, 1048577, 1179656, 0, 1048579, 1179657, 0, 1048580, 1179658, 0, 1048578, 1179659, 0, 1048577, 1179660, 0, 1048585, 1179661, 0, 1048580, 1179662, 0, 1048583, 1179663, 0, 196612, 1179664, 0, 1048578, 1179665, 0, 1048579, 1179666, 0, 1048583, 1179667, 0, 196612, 1179668, 0, 1048577, 1179669, 0, 1048583, 1179670, 0, 1048584, 1179671, 0, 1048585, 1179672, 0, 196612, 1179673, 0, 1048577, 1179674, 0, 196613, 1179675, 0, 1048584, 1179676, 0, 262147, 1179679, 9, 0, 1179683, 0, 524296, 1245215, 15, 131074, 1245216, 15, 131074, 1245219, 0, 589833, 1310750, 0, 262149, 1310751, 0, 1048580, 1310752, 0, 1048581, 1310753, 0, 393219, 1310755, 0, 589833, 1376291, 0, 589833 )
 
 [node name="Spike" parent="TileMap" instance=ExtResource( 3 )]
 position = Vector2( 53, 141 )
@@ -86,6 +86,39 @@ position = Vector2( 18, 0 )
 [node name="Spike5" parent="TileMap/Spike/Spike7" instance=ExtResource( 3 )]
 position = Vector2( 24, 0 )
 
+[node name="Spike9" parent="TileMap/Spike" instance=ExtResource( 3 )]
+position = Vector2( 108, 0 )
+
+[node name="Spike2" parent="TileMap/Spike/Spike9" instance=ExtResource( 3 )]
+position = Vector2( 6, 0 )
+
+[node name="Spike3" parent="TileMap/Spike/Spike9" instance=ExtResource( 3 )]
+position = Vector2( 12, 0 )
+
+[node name="Spike4" parent="TileMap/Spike/Spike9" instance=ExtResource( 3 )]
+position = Vector2( 18, 0 )
+
+[node name="Spike5" parent="TileMap/Spike/Spike9" instance=ExtResource( 3 )]
+position = Vector2( 24, 0 )
+
+[node name="Spike10" parent="TileMap/Spike" instance=ExtResource( 3 )]
+position = Vector2( 138, 0 )
+
+[node name="Spike2" parent="TileMap/Spike/Spike10" instance=ExtResource( 3 )]
+position = Vector2( 6, 0 )
+
+[node name="Spike3" parent="TileMap/Spike/Spike10" instance=ExtResource( 3 )]
+position = Vector2( 12, 0 )
+
+[node name="Spike4" parent="TileMap/Spike/Spike10" instance=ExtResource( 3 )]
+position = Vector2( 18, 0 )
+
+[node name="Spike5" parent="TileMap/Spike/Spike10" instance=ExtResource( 3 )]
+position = Vector2( 24, 0 )
+
+[node name="Spike6" parent="TileMap/Spike/Spike10" instance=ExtResource( 3 )]
+position = Vector2( 30, 0 )
+
 [node name="Spike8" parent="TileMap/Spike" instance=ExtResource( 3 )]
 position = Vector2( 90, 0 )
 
@@ -108,13 +141,14 @@ position = Vector2( 70, 128 )
 curve = SubResource( 1 )
 
 [node name="Path2D2" type="Path2D" parent="Path2D"]
+position = Vector2( 52, 0 )
 curve = SubResource( 2 )
 
 [node name="Path2D3" type="Path2D" parent="Path2D"]
+position = Vector2( 52, -24 )
 curve = SubResource( 3 )
 
 [node name="Area1" type="Area2D" parent="."]
-visible = false
 position = Vector2( 43, 79 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area1"]
@@ -122,13 +156,14 @@ position = Vector2( 91, 23 )
 shape = SubResource( 4 )
 
 [node name="Area2" type="Area2D" parent="Area1"]
+position = Vector2( 40, -6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area1/Area2"]
 position = Vector2( 129, 22 )
 shape = SubResource( 5 )
 
 [node name="Area3" type="Area2D" parent="Area1"]
-position = Vector2( 129, 22 )
+position = Vector2( 129, 15 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area1/Area3"]
 position = Vector2( -18, -49 )
