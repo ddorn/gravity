@@ -26,7 +26,7 @@ func push(movement : Vector2, snap : Vector2, pusher : KinematicBody2D) -> void:
 	if GRAVITY > 250 :
 		not_pushing = true;
 	if !not_pushing :
-		if Input.get_action_strength("ui_w") && GRAVITY <= 250  :
+		if Input.get_action_strength("ui_w") && GRAVITY <= 200  :
 			picking_up_box(pusher)
 			body_interacted = pusher
 		movement.y = 0;
@@ -69,6 +69,7 @@ func _physics_process(delta):
 
 func picking_up_box(pusher : KinematicBody2D):
 	picked_up = true;
+	self.position = pusher.position + Vector2(0,-15)
 	pusher.picking_up_box(self)
 
 func putting_down(direction):
@@ -96,3 +97,7 @@ func _on_LeftSide_body_exited(body):
 func _on_RightSide_body_exited(body):
 	if body.get("TYPE") == "player":
 		not_pushing = true;
+
+func _on_PlayerHoldingBox_body_exited(body):
+	if body.get("TYPE") == "player" && picked_up :
+		body.putting_down_box(0);
