@@ -15,7 +15,7 @@ func _ready():
 func _set_Dialogue_Page(in_page, est_visible):
 	print("_set_Dialogue_Page :", in_page, " , ", est_visible);
 	texte_visible = est_visible;
-	set_bbcode(dialogue[page]);
+	set_bbcode(dialogue[in_page]);
 
 
 func _on_Timer_timeout():

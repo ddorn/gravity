@@ -125,7 +125,6 @@ anims/jump = SubResource( 4 )
 anims/run = SubResource( 5 )
 
 [node name="DeathParticles" type="Particles2D" parent="."]
-visible = false
 position = Vector2( 0, -4 )
 emitting = false
 amount = 200
