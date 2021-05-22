@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Dialogue/RichTextLabel.gd" type="Script" id=1]
 [ext_resource path="res://Dialogue/Dialogue.gd" type="Script" id=2]
+[ext_resource path="res://images/textBox.png" type="Texture" id=3]
+[ext_resource path="res://Gugi-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 10
+outline_color = Color( 0.027451, 0.419608, 0.717647, 1 )
+extra_spacing_top = -1
+extra_spacing_char = 1
+font_data = ExtResource( 4 )
 
 [node name="Dialogue" type="Control"]
 margin_right = 40.0
@@ -18,31 +27,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Inner" type="Polygon2D" parent="."]
-position = Vector2( 96.0564, 0.113054 )
-color = Color( 0.341176, 0.592157, 0.815686, 1 )
-polygon = PoolVector2Array( 0.0673904, 0.189974, 0.172218, 40.2349, 127.96, 40.0253, 128.169, 0.294804 )
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 159.919, 20.3341 )
+texture = ExtResource( 3 )
 
-[node name="Outer" type="Polygon2D" parent="Inner"]
-position = Vector2( 1.87691, 1.58039 )
-scale = Vector2( 0.970684, 0.916837 )
-color = Color( 0.25098, 0.286275, 0.376471, 1 )
-polygon = PoolVector2Array( 0.0813828, 40.4475, -0.127579, -0.0908184, 128.174, 0.118141, 128.174, 40.2385 )
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Inner/Outer"]
-margin_left = 3.0
-margin_top = 2.0
-margin_right = 125.0
-margin_bottom = 39.0
+[node name="RichTextLabel" type="RichTextLabel" parent="Sprite"]
+anchor_left = -0.000773549
+anchor_right = -0.000773549
+margin_left = -60.2079
+margin_top = -14.4258
+margin_right = 61.7921
+margin_bottom = 19.9702
+rect_clip_content = false
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
-bbcode_text = "Utilisez Q et E pour modifier l'intensité de la gravité."
-text = "Utilisez Q et E pour modifier l'intensité de la gravité."
+bbcode_text = "Utilisez Q et E pour modifier l'intensite de la gravite."
+text = "Utilisez Q et E pour modifier l'intensite de la gravite."
+scroll_active = false
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Timer" type="Timer" parent="Inner/Outer"]
+[node name="Timer" type="Timer" parent="Sprite"]
 wait_time = 0.1
 autostart = true
-[connection signal="timeout" from="Inner/Outer/Timer" to="Inner/Outer/RichTextLabel" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Sprite/Timer" to="Sprite/RichTextLabel" method="_on_Timer_timeout"]

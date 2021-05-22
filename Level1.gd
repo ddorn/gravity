@@ -1,4 +1,5 @@
-extends Control
+extends Node2D
+
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -7,10 +8,12 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	hide();
-	if PlayerVariables.scene == 2 && PlayerVariables.mort == 1 :
-		show();
-	pass
+	if !(PlayerVariables.scene == 2):
+		PlayerVariables.mort = 0;
+		PlayerVariables.scene = 2;
+	pass # Replace with function body.
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

@@ -1,14 +1,14 @@
 extends RichTextLabel
 
 
-var dialogue = [" ", "Utilisez Q et E pour modifier l'intensité de la gravité.", "Bonne Chance"]
+var dialogue = [" ", "Utilisez Q et E pour modifier l'intensite de la gravite.", "Bonne Chance"]
 var page = 0
 var texte_visible
 
 
 func _ready():
 	set_visible_characters(0);
-	if PlayerVariables.scene == 1 && PlayerVariables.mort == 1 :
+	if PlayerVariables.scene == 2 && PlayerVariables.mort == 1 :
 		_set_Dialogue_Page(1, 1)
 
 
