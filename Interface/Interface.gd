@@ -2,7 +2,7 @@ extends Control
 
 const Utils = preload("res://utils.gd")
 
-const MIN_GRAVITY = 50
+const MIN_GRAVITY = 100
 const MAX_GRAVITY = 400
 const grav_thresholds = [100, 150, 250, 300]
 
