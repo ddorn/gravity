@@ -19,7 +19,7 @@ var picked_up = false;
 var not_pushing;
 var GRAVITY = 200;
 var body_interacted = KinematicBody2D
-
+var spawn_position
 
 func push(movement : Vector2, snap : Vector2, pusher : KinematicBody2D) -> void:
 	GRAVITY = Utils.get_gravity(self)
@@ -38,6 +38,8 @@ func _ready():
 	last_velocity = Vector2(velocity)
 	velocity.y = 0;
 	not_pushing = true
+	spawn_position = Vector2(position)
+	$Animation.play("spawn")
 
 func _physics_process(delta):
 	var friction;
@@ -101,3 +103,8 @@ func _on_PlayerHoldingBox_body_exited(body):
 	if body.get("TYPE") == "player" && picked_up :
 		print("A")
 		body.putting_down_box(0);
+
+func kill():
+	position = Vector2(spawn_position)
+	$BreakSound.play()
+	$Animation.play("spawn")
