@@ -7,7 +7,7 @@ func collide_with(collision: KinematicCollision2D, body):
 		# 200 is the default gravity. So by default RHS is 1. 
 		var normalized_repulsion = 200.0 / Utils.get_gravity(self)
 		# By default, if the player is faster than 20 px/s they die.
-		var normalized_velocity = (body.last_velocity.y / 2 + 15) / 20.0
+		var normalized_velocity = (body.last_velocity.y / 3 + 15) / 20.0
 		
 		if normalized_velocity > normalized_repulsion:
 			body.kill()
