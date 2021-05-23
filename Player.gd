@@ -75,8 +75,8 @@ func _physics_process(delta):
 	var snap = Vector2.DOWN * SNAP if !is_jumping else Vector2.ZERO
 	
 	last_velocity = Vector2(velocity)
-	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP, false, 4, PI/4, false)
-
+	update_box()
+	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP)
 	# Handle the collisions with other objects
 	for i in range(get_slide_count()):
 		var collision = get_slide_collision(i)
@@ -85,7 +85,6 @@ func _physics_process(delta):
 
 		if collision.collider.has_method("push"):
 			collision.collider.push(velocity, snap, self)
-
 	if not (-10 < position.x and position.x < 360 + 10 and -10 < position.y and position.y < 180 + 10):
 		kill()
 
@@ -97,9 +96,9 @@ func update_box():
 			kill()
 			return
 		
-		acceleration = lerp(0, JUMP_IMPULSE / 4.0,  (250.0 - gravity) / 250)
-		object_picked.box_following_player(velocity)
-		
+		acceleration = lerp(0, ACCELERATION,  (250.0 - gravity) / 250)
+		object_picked.box_following_player(self)
+		print("P ", self.position, " A ", acceleration)
 		if Input.is_action_just_pressed("ui_w"):
 			var direction = 0
 			if sprite.is_flipped_h() :

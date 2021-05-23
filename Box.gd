@@ -57,8 +57,7 @@ func _physics_process(delta):
 			velocity.x = velocity.x + friction*MIN_SPEED;
 		elif velocity.x < 0:
 			velocity.x = 0
-			 
-	velocity = move_and_slide(velocity, Vector2.UP)
+		velocity = move_and_slide(velocity, Vector2.UP)
 	
 	# Handle the collisions with other objects
 	for i in range(get_slide_count()):
@@ -77,8 +76,8 @@ func putting_down(direction):
 	velocity.x = direction*MAX_SPEED
 	velocity.y = 0
 
-func box_following_player(movement : Vector2):
-	velocity = movement
+func box_following_player(pusher : KinematicBody2D):
+	self.position = pusher.position + Vector2(0,-15)
 
 func _on_LeftSide_body_entered(body):
 	if body.get("TYPE") == "player":
@@ -100,4 +99,5 @@ func _on_RightSide_body_exited(body):
 
 func _on_PlayerHoldingBox_body_exited(body):
 	if body.get("TYPE") == "player" && picked_up :
+		print("A")
 		body.putting_down_box(0);
