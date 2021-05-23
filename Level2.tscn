@@ -73,7 +73,7 @@ position = Vector2( 44, -21 )
 position = Vector2( 60, -21 )
 
 [node name="Box" parent="." instance=ExtResource( 3 )]
-position = Vector2( 51, 145 )
+position = Vector2( 45, 144 )
 
 [node name="Plank" parent="." instance=ExtResource( 12 )]
 position = Vector2( 87, 119 )

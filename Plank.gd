@@ -15,9 +15,9 @@ func collide_with(collision: KinematicCollision2D, body):
 		force_on_plank += Utils.get_gravity(self)
 
 func _physics_process(delta):
-	print(force_on_plank)
 	if force_on_plank > force_to_break:
-		queue_free()
+		# queue_free()
+		call_deferred("free")
 		
 	force_on_plank = 0
 	objects_collisioned_with = []

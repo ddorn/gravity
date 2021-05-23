@@ -105,11 +105,11 @@ func _physics_process(delta):
 func update_box():
 	var gravity = Utils.get_gravity(self)
 	if box_on_shoulder:
-		if gravity >= 250:
+		if gravity > 250:
 			kill()
 			return
 		
-		acceleration = lerp(0, ACCELERATION,  (250.0 - gravity) / 250)
+		acceleration = lerp(0, ACCELERATION,  (300.0 - gravity) / 300)
 		object_picked.box_following_player(self)
 		print("P ", self.position, " A ", acceleration)
 		if Input.is_action_just_pressed("ui_w"):

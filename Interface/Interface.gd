@@ -9,6 +9,7 @@ const grav_thresholds = [100, 150, 200, 250, 300, 350, 400]
 const GRAVITY_CHANGE = 50  # units per key press
 
 
+
 func _gravity_con_change(new_gravity):
 	var index = grav_thresholds.bsearch(new_gravity)
 	$SpriteGrav.frame = len(grav_thresholds) - index - 1
