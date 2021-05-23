@@ -9,6 +9,7 @@ var timer = 0
 var last_velocity
 const horizontal_acceleration = 0.05
 var dead_for = 0
+var dying = false
 export(int, 0, 10) var respawn_delay = 2
 
 func _ready():
@@ -20,8 +21,9 @@ func _ready():
 func _physics_process(delta):
 	timer += delta
 	dead_for -= delta
-	if dead_for > 0:
+	if dead_for > 0 or dying:
 		return
+
 	
 	var vertical_force = (Utils.get_gravity(self) - 200) / 4
 	vertical_force += sin(timer * 10) * 10
@@ -49,7 +51,18 @@ func respawn():
 	position = Vector2(spawn)
 	velocity = Vector2.RIGHT * horizontal_speed
 	dead_for = respawn_delay
+	dying = false
+	$Sprite/Animation.play("default")
+	$Blood.hide()
+	$Trail.emitting = true
 
 func kill():
-	respawn()
+	$Sprite/Animation.play("death")
 	$Kill.play()
+	$Trail.emitting = false
+	$Blood.show()
+	dying = true
+
+func _on_animation_finished(anim_name):
+	if anim_name == "death":
+		respawn()
