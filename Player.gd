@@ -37,9 +37,10 @@ func _physics_process(delta):
 	
 	var GRAVITY = Utils.get_gravity(self)
 	var x_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	var gravity_effort = lerp(1.5, 0.5, (GRAVITY - 100) / 300)
 	
 	if x_input != 0:
-		velocity.x += x_input * acceleration * delta
+		velocity.x += x_input * acceleration * delta * gravity_effort
 		velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
 		
 		sprite.flip_h = (x_input < 0)
