@@ -38,19 +38,6 @@ func _physics_process(delta):
 	var GRAVITY = Utils.get_gravity(self)
 	var x_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	
-	if box_on_shoulder :
-		acceleration = ACCELERATION - (1+((GRAVITY-50)/250))
-		clamp(acceleration, 32, ACCELERATION)
-		object_picked.box_following_player(velocity)
-		if GRAVITY >= 250 :
-			self.kill()
-		if Input.is_action_just_pressed("ui_w"):
-			var direction = 0
-			if sprite.is_flipped_h() :
-				direction = -1
-			else :
-				direction = 1
-			putting_down_box(direction)
 	if x_input != 0:
 		velocity.x += x_input * acceleration * delta
 		velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
@@ -101,6 +88,26 @@ func _physics_process(delta):
 
 	if not (-10 < position.x and position.x < 360 + 10 and -10 < position.y and position.y < 180 + 10):
 		kill()
+
+
+func update_box():
+	var gravity = Utils.get_gravity(self)
+	if box_on_shoulder:
+		if gravity >= 250:
+			kill()
+			return
+		
+		acceleration = lerp(0, JUMP_IMPULSE / 4.0,  (250.0 - gravity) / 250)
+		object_picked.box_following_player(velocity)
+		
+		if Input.is_action_just_pressed("ui_w"):
+			var direction = 0
+			if sprite.is_flipped_h() :
+				direction = -1
+			else:
+				direction = 1
+			putting_down_box(direction)
+
 
 func kill():
 	putting_down_box(0)

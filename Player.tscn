@@ -150,5 +150,5 @@ __meta__ = {
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 visible = false
 stream = ExtResource( 4 )
-volume_db = 3.0
+volume_db = 20.0
 [connection signal="animation_finished" from="Animation" to="." method="_on_Animation_finished"]
