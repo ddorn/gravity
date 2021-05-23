@@ -7,7 +7,6 @@ var sound_length
 
 func _ready():
 	sound_length = $SuccessSound.stream.get_length()
-	print(sound_length)
 
 # Time since the player entered the area
 var entered = false
@@ -22,9 +21,8 @@ func _on_Area2D_body_entered(body):
 	if entered:
 		return
 	
-	entered = true
-	
 	if body.get("TYPE") == "player":
+		entered = true
 		$SuccessSound.play()
 
 func _on_SuccessSound_finished():

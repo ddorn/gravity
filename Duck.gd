@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const Utils = preload("res://utils.gd")
 
-export(float, -200.0, 200.0) var horizontal_speed = 100
+export(float, -200.0, 200.0) var horizontal_speed = -60
 var velocity = Vector2.RIGHT * horizontal_speed
 var spawn
 var timer = 0
@@ -15,6 +15,7 @@ func _ready():
 	spawn = Vector2(position)
 	$Sprite/Animation.play("default")
 	respawn()
+	
 
 func _physics_process(delta):
 	timer += delta

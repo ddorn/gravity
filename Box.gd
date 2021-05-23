@@ -66,6 +66,11 @@ func _physics_process(delta):
 		var collision = get_slide_collision(i)
 		if collision.collider.has_method("collide_with"):
 			collision.collider.collide_with(collision, self)
+			
+	# Kill out of screen
+	if not (-20 < position.x and position.x < 360 + 20 and -20 < position.y and position.y < 180 + 20):
+		kill()
+
 
 
 func picking_up_box(pusher : KinematicBody2D):
