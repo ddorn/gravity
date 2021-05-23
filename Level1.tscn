@@ -38,8 +38,6 @@ extents = Vector2( 182, 51 )
 [node name="Level1" type="Node2D"]
 script = ExtResource( 11 )
 
-[node name="Dialogue" parent="." instance=ExtResource( 10 )]
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 8, 8 )
@@ -191,3 +189,8 @@ autoplay = true
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 21, 120 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Dialogue" parent="CanvasLayer" instance=ExtResource( 10 )]
