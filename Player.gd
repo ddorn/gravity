@@ -30,8 +30,18 @@ func _ready():
 	Physics2DServer.area_set_param(get_world_2d().get_space(), Physics2DServer.AREA_PARAM_GRAVITY, 200)
 
 
+func handle_input():
+	if Input.is_key_pressed(KEY_K):
+		kill()
+		
+	for lvl in range(1, 4):
+		# 48 is KEY_0
+		if Input.is_key_pressed(48 + lvl):
+			get_tree().change_scene("res://Level%s.tscn" % lvl)
+
+
 func _physics_process(delta):
-	# Player inputs
+	handle_input()
 	if dead:
 		return
 	
