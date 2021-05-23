@@ -14,7 +14,7 @@ extents = Vector2( 2.20938, 3.25428 )
 extents = Vector2( 2.06619, 3.25337 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 1.90482, 4.12997 )
+extents = Vector2( 1.53945, 2.60175 )
 
 [sub_resource type="Animation" id=5]
 resource_name = "spawn"
@@ -57,7 +57,7 @@ shape = SubResource( 3 )
 [node name="PlayerHoldingBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHoldingBox"]
-position = Vector2( 0.0498467, 6.63044 )
+position = Vector2( 0.011385, 5.11119 )
 shape = SubResource( 4 )
 
 [node name="BreakSound" type="AudioStreamPlayer2D" parent="."]

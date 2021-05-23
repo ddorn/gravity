@@ -48,7 +48,7 @@ func _physics_process(delta):
 	var friction
 	if is_on_floor():
 		if Input.is_action_just_pressed("ui_up"):
-			velocity.y = -JUMP_IMPULSE
+			velocity.y = -JUMP_IMPULSE if !box_on_shoulder else -JUMP_IMPULSE / 1.5
 			is_jumping = true
 		friction = GROUND_FRICTION
 
