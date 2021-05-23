@@ -20,7 +20,7 @@ var not_pushing;
 var GRAVITY = 200;
 var body_interacted = KinematicBody2D
 
-# Called when the node enters the scene tree for the first time.
+
 func push(movement : Vector2, snap : Vector2, pusher : KinematicBody2D) -> void:
 	GRAVITY = Utils.get_gravity(self)
 	if GRAVITY > 250 :

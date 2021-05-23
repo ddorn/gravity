@@ -17,7 +17,7 @@ var velocity = Vector2.ZERO
 var acceleration = ACCELERATION;
 var is_jumping = false
 var box_on_shoulder = false
-var object_picked = KinematicBody2D
+var object_picked = null
 
 onready var sprite = $Sprite
 onready var animationplayer = $Animation
@@ -103,7 +103,10 @@ func _physics_process(delta):
 		kill()
 
 func kill():
-	# putting_down_box(0)
+	putting_down_box(0)
+	if dead:
+		return
+		
 	dead = true
 	animationplayer.play("death")
 	$DeathText.visible = true
@@ -115,19 +118,15 @@ func picking_up_box(object : KinematicBody2D):
 	object_picked = object
 
 func putting_down_box(direction):
+	if object_picked == null:
+		return
+		
 	box_on_shoulder = false
 	object_picked.putting_down(direction)
 	acceleration = ACCELERATION;
-
 
 
 func _on_Animation_finished(anim_name):
 	if anim_name == "death":
 		PlayerVariables.mort += 1
 		get_tree().reload_current_scene()
-		
-		
-
-
-func react_to_button_press(pressed):
-	pass # Replace with function body.
