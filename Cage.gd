@@ -15,8 +15,10 @@ func react_to_button_press(pressed):
 	
 	if buttons_pressed >= buttons_needed_to_open:
 		open = true
-		$Collision.set_deferred("disabled", true)
-
+	else:
+		open = false
+	$Collision.set_deferred("disabled", open)
+		
 	var frame_goal
 	if open:
 		frame_goal = 7
