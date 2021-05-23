@@ -184,7 +184,7 @@ next_level = ExtResource( 8 )
 
 [node name="BgMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-volume_db = -15.0
+volume_db = -6.0
 autoplay = true
 
 [node name="Player" parent="." instance=ExtResource( 5 )]

@@ -98,7 +98,7 @@ horizontal_speed = -60.0
 
 [node name="BgMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -15.0
+volume_db = -5.0
 autoplay = true
 
 [node name="Cage" parent="." instance=ExtResource( 11 )]

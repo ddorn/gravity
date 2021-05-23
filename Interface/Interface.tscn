@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Interface/Interface.gd" type="Script" id=1]
 [ext_resource path="res://Interface/Tween.gd" type="Script" id=2]
 [ext_resource path="res://images/Gravity5.png" type="Texture" id=3]
 [ext_resource path="res://Interface/AnimationTree.gd" type="Script" id=4]
+[ext_resource path="res://Sounds/grav_changed.wav" type="AudioStream" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "LVL1_grav"
@@ -228,3 +229,7 @@ script = ExtResource( 4 )
 
 [node name="Tween" type="Tween" parent="."]
 script = ExtResource( 2 )
+
+[node name="GravChangedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -5.0

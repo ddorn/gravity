@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/gravityDown.wav-784b861512aff384560f891d58994b2f.sample"
+path="res://.import/grav_changed.wav-5de2cd16756afc1509eb6d3669cea2ce.sample"
 
 [deps]
 
-source_file="res://Sounds/gravityDown.wav"
-dest_files=[ "res://.import/gravityDown.wav-784b861512aff384560f891d58994b2f.sample" ]
+source_file="res://Sounds/grav_changed.wav"
+dest_files=[ "res://.import/grav_changed.wav-5de2cd16756afc1509eb6d3669cea2ce.sample" ]
 
 [params]
 
