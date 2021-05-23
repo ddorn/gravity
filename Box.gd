@@ -49,24 +49,27 @@ func _physics_process(delta):
 		if !is_on_floor():
 			velocity.y += GRAVITY * delta
 			friction = AIR_FRICTION
-		else : friction = GROUND_FRICTION
+		else:
+			friction = GROUND_FRICTION
 		friction = friction*friction_grav_coeff
-		if velocity.x > friction*MIN_SPEED:
-			velocity.x = velocity.x - friction*MIN_SPEED;
+		if velocity.x > friction * MIN_SPEED:
+			velocity.x = velocity.x - friction * MIN_SPEED
 		elif velocity.x > 0:
 			velocity.x = 0 
-		elif velocity.x < -friction*MIN_SPEED:
-			velocity.x = velocity.x + friction*MIN_SPEED;
+		elif velocity.x < -friction * MIN_SPEED:
+			velocity.x = velocity.x + friction * MIN_SPEED
 		elif velocity.x < 0:
 			velocity.x = 0
-		velocity = move_and_slide(velocity, Vector2.UP)
-	
-	# Handle the collisions with other objects
-	for i in range(get_slide_count()):
-		var collision = get_slide_collision(i)
-		if collision.collider.has_method("collide_with"):
-			collision.collider.collide_with(collision, self)
 			
+		if velocity != Vector2.ZERO:
+			velocity = move_and_slide(velocity, Vector2.UP)
+		
+		# Handle the collisions with other objects
+		for i in range(get_slide_count()):
+			var collision = get_slide_collision(i)
+			if collision.collider.has_method("collide_with"):
+				collision.collider.collide_with(collision, self)
+				
 	# Kill out of screen
 	if not (-20 < position.x and position.x < 360 + 20 and -20 < position.y and position.y < 180 + 20):
 		kill()

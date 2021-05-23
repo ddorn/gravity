@@ -107,7 +107,6 @@ shape = SubResource( 1 )
 texture = ExtResource( 1 )
 vframes = 3
 hframes = 2
-frame = 4
 
 [node name="Animation" type="AnimationPlayer" parent="Sprite"]
 anims/death = SubResource( 2 )
