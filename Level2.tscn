@@ -78,10 +78,10 @@ position = Vector2( 51, 145 )
 position = Vector2( 87, 113 )
 
 [node name="Interface" parent="." instance=ExtResource( 5 )]
-margin_left = 270.0
-margin_top = 7.0
-margin_right = 310.0
-margin_bottom = 47.0
+margin_left = 300.0
+margin_top = 32.0
+margin_right = 340.0
+margin_bottom = 72.0
 
 [node name="Button1" parent="." instance=ExtResource( 7 )]
 position = Vector2( 253, 152 )

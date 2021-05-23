@@ -4,21 +4,14 @@ const Utils = preload("res://utils.gd")
 
 const MIN_GRAVITY = 100
 const MAX_GRAVITY = 400
-const grav_thresholds = [100, 150, 250, 300]
+const grav_thresholds = [100, 150, 200, 250, 300, 350, 400]
 
 const GRAVITY_CHANGE = 50  # units per key press
 
-onready var animGrav = $HBoxContainer/AnimGrav
-onready var animTreeGrav = $HBoxContainer/AnimTreeGrav
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	animTreeGrav.active=true
-	animTreeGrav['parameters/playback'].start("LVL3_grav")
 
 func _gravity_con_change(new_gravity):
 	var index = grav_thresholds.bsearch(new_gravity)
-	animTreeGrav['parameters/playback'].travel("LVL" + str(index + 1) + "_grav")
+	$SpriteGrav.frame = len(grav_thresholds) - index - 1
 
 
 func _input(event):
