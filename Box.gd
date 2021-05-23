@@ -32,7 +32,7 @@ func push(movement: Vector2, snap: Vector2, pusher: KinematicBody2D) -> void:
 		move_and_slide_with_snap(movement, snap, Vector2.UP, false, 4, PI/4, false)
 
 func check_if_picking():
-	if Input.get_action_strength("ui_w") && GRAVITY <= 200:
+	if Input.is_action_just_pressed("ui_w") && GRAVITY <= 200:
 		for body in $PickUpArea.get_overlapping_bodies():
 			if body.get("TYPE") == "player":
 				picking_up_box(body)

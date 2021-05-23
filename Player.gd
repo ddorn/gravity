@@ -7,7 +7,7 @@ const TYPE = "player"
 const ACCELERATION = 512
 const JUMP_IMPULSE = 100
 const AIR_FRICTION = 0.03
-const SNAP = 2
+const SNAP = 1.5
 
 const GROUND_FRICTION = 0.4
 const MAX_SPEED = 64

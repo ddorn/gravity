@@ -10,10 +10,14 @@ var last_velocity
 const horizontal_acceleration = 0.05
 var dead_for = 0
 var dying = false
-export(int, 0, 10) var respawn_delay = 2
+export(float, 0, 10) var respawn_delay = 2.0
 
 func _ready():
 	spawn = Vector2(position)
+	if horizontal_speed > 0:
+		$Sprite.flip_h = true
+		$Trail.process_material.direction.x *= -1
+		$Trail.position.x *= -1
 	$Sprite/Animation.play("default")
 	respawn()
 	
