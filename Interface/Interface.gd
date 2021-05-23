@@ -29,7 +29,7 @@ func _input(event):
 	if gravity != Utils.get_gravity(self):
 		Utils.set_gravity(self, gravity)
 		_gravity_con_change(gravity)
-		var avg_grav = (MAX_GRAVITY + MIN_GRAVITY) / 2
+		var avg_grav = (MAX_GRAVITY + MIN_GRAVITY) / 2.0
 		var grav_prop = 2 * (gravity - avg_grav) / (MAX_GRAVITY - MIN_GRAVITY)  # in the range [-1, 1]
 		$GravChangedSound.pitch_scale = 1 - grav_prop * 0.8
 		$GravChangedSound.play()

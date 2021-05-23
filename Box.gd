@@ -52,8 +52,8 @@ func _physics_process(delta):
 
 	if !picked_up:
 		var friction_grav_coeff = 1 + GRAVITY/100;
+		velocity.y += GRAVITY * delta
 		if !is_on_floor():
-			velocity.y += GRAVITY * delta
 			friction = AIR_FRICTION
 		else:
 			friction = GROUND_FRICTION

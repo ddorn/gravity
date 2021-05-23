@@ -41,7 +41,6 @@ func _physics_process(delta):
 	# update the pause attribute
 	if paused:
 		if avoid_body:
-			var body_pos = get_node(avoid_body).position
 			if get_node(avoid_areas[path_index]).overlaps_body(get_node(avoid_body)):
 				paused = false
 		else:

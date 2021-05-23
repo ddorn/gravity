@@ -7,7 +7,7 @@ var force_on_plank = 0
 # Some objects collide twice in one frame, so we keep track of that.
 var objects_collisioned_with = []
 
-func collide_with(collision: KinematicCollision2D, body):
+func collide_with(_collision: KinematicCollision2D, body):
 	if body.position.y < position.y and not body in objects_collisioned_with:
 		objects_collisioned_with.append(body)
 		
@@ -16,8 +16,14 @@ func collide_with(collision: KinematicCollision2D, body):
 
 func _physics_process(delta):
 	if force_on_plank > force_to_break:
+		$Animation.play("break")
+		
 		# queue_free()
-		call_deferred("free")
+		# call_deferred("free")
 		
 	force_on_plank = 0
 	objects_collisioned_with = []
+
+
+func _on_Animation_animation_finished(anim_name):
+	queue_free()
