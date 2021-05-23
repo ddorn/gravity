@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/box_falling.wav-f93c2dc7564e6d53406ea90c831f80d7.sample"
+
+[deps]
+
+source_file="res://Sounds/box_falling.wav"
+dest_files=[ "res://.import/box_falling.wav-f93c2dc7564e6d53406ea90c831f80d7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
