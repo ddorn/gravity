@@ -26,4 +26,7 @@ func _on_Area2D_body_entered(body):
 		$SuccessSound.play()
 
 func _on_SuccessSound_finished():
-	get_tree().change_scene_to(next_level)
+	if next_level:
+		get_tree().change_scene_to(next_level)
+	else:
+		get_tree().change_scene("res://Menu.tscn")
