@@ -1,7 +1,7 @@
 extends Label
 
 
-export(float, 1, 20) var lifetime = 3.0
+export(float, 0, 20) var lifetime = 3.0
 export(bool) var one_shot = true
 var did_shot = false
 
@@ -13,13 +13,14 @@ func trigger():
 		return
 		
 	did_shot = true
-	$Anim.play("spawn")
-
+	if $Timer.time_left == 0:
+		$Anim.play("spawn")
+	else:
+		$Timer.start(lifetime)
 
 func _on_Anim_animation_finished(anim_name):
 	if anim_name == "spawn":
 		$Timer.start(lifetime)
-
 
 func _on_Timer_timeout():
 	$Anim.play("death")

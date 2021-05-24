@@ -206,6 +206,7 @@ position = Vector2( 56, 138 )
 shape = SubResource( 7 )
 
 [node name="Hint" parent="SpikeHint" instance=ExtResource( 9 )]
+visible = true
 margin_left = 40.0
 margin_top = 87.0
 margin_right = 136.0
