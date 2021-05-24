@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Spike.tscn" type="PackedScene" id=1]
 [ext_resource path="res://MainTileset.tres" type="TileSet" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Level3.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Level1.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Gugi-Regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Sounds/crickets_ambiance_sound.wav" type="AudioStream" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 6
@@ -31,7 +32,14 @@ __meta__ = {
 }
 
 [node name="Duck" parent="." instance=ExtResource( 4 )]
-position = Vector2( 341, 59 )
+position = Vector2( 347, 48 )
+
+[node name="Duck5" parent="." instance=ExtResource( 4 )]
+position = Vector2( 510, 12 )
+
+[node name="Duck6" parent="." instance=ExtResource( 4 )]
+position = Vector2( 534, 94 )
+horizontal_speed = -50.0
 
 [node name="Duck2" parent="." instance=ExtResource( 4 )]
 position = Vector2( -13, 33 )
@@ -124,3 +132,7 @@ next_level = ExtResource( 9 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 9, 154 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -5.0
