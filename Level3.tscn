@@ -81,9 +81,6 @@ collision_mask = 2
 position = Vector2( 395, 20 )
 respawn_delay = 1.0
 
-[node name="Box" parent="." instance=ExtResource( 2 )]
-position = Vector2( 155, 16 )
-
 [node name="Platform" parent="." instance=ExtResource( 3 )]
 position = Vector2( 45, 36 )
 patrol_path = [ NodePath("Path2D") ]
@@ -123,11 +120,14 @@ margin_bottom = 120.0
 position = Vector2( 195, 152 )
 
 [node name="Player" parent="." instance=ExtResource( 10 )]
-position = Vector2( 84, 97 )
+position = Vector2( 149, 18 )
 z_index = 1
 collision_mask = 3
-[connection signal="change_state" from="Button" to="TrophyCage" method="react_to_button_press"]
+
+[node name="Box" parent="." instance=ExtResource( 2 )]
+position = Vector2( 155, 16 )
 [connection signal="change_state" from="Button" to="SecondCage" method="react_to_button_press"]
 [connection signal="change_state" from="Button" to="FirstCage" method="react_to_button_press"]
+[connection signal="change_state" from="Button" to="TrophyCage" method="react_to_button_press"]
 [connection signal="change_state" from="Button2" to="SecondCage" method="react_to_button_press"]
 [connection signal="change_state" from="Button3" to="TrophyCage" method="react_to_button_press"]
