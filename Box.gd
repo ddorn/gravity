@@ -78,7 +78,7 @@ func _physics_process(delta):
 				collision.collider.collide_with(collision, self)
 				
 	# Kill out of screen
-	if not (-20 < position.x and position.x < 360 + 20 and -20 < position.y):
+	if not (-20 < position.x and position.x < 360 + 20 and position.y < 180 + 20):
 		kill()
 
 
